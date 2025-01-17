@@ -164,3 +164,22 @@ pages:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - 'docs/**/*'
+
+publish prototype continuous:
+  extends: publish preview
+  variables:
+    CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment:
+    name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
+    url: 'https://${CI_MERGE_REQUEST_ID}.review.gitlab.ti8m.ch'
+    on_stop: 'stop prototype continuous'
+
+stop prototype continuous:
+  extends: stop preview
+  variables:
+    CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual
