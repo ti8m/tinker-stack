@@ -1,3 +1,12 @@
+# Root CI File
+
+include:
+  - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/preview@1.0
+    inputs:
+      build_job: 'build prototype'
+      stage: publish
+      build_folder: 'prototype/build/client'
+
 default:
   image: node:22
   interruptible: true
@@ -82,6 +91,8 @@ force install dependencies:
 verify:
   stage: verify
   interruptible: true
+  variables:
+    ESLINT_CODE_QUALITY_REPORT: 'gl-code-quality-report.json'
   cache:
     - <<: *npm_cache
     - key: verify-$CI_COMMIT_REF_SLUG
@@ -95,7 +106,8 @@ verify:
     - node --version
     - npm --version
     - npm ci
-    - ./node_modules/.bin/turbo run typecheck --concurrency=1
+    - ./node_modules/.bin/turbo run typecheck
+    - ./node_modules/.bin/turbo run lint
   artifacts:
     when: always
     expire_in: 5 days
@@ -104,11 +116,30 @@ verify:
     reports:
       codequality: 'gl-code-quality-report.json'
 
+test:
+  stage: verify
+  interruptible: true
+  needs:
+    - job: install dependencies
+      optional: true
+  script:
+    - ./node_modules/.bin/turbo run test
+
 ############################################################
 #
 #   Build stage
 #
 ############################################################
+
+build prototype:
+  interruptible: true
+  stage: build
+  script:
+    - npm ci
+    - npm run build:prototype
+  artifacts:
+    paths:
+      - prototype/build
 
 ############################################################
 #
@@ -133,3 +164,25 @@ pages:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       changes:
         - 'docs/**/*'
+
+publish prototype continuous:
+  extends: create preview
+  variables:
+    CI_MERGE_REQUEST_ID: p${CI_PROJECT_ID}-cont
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  environment:
+    name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
+    url: 'https://${CI_MERGE_REQUEST_ID}.review.gitlab.ti8m.ch'
+    on_stop: 'stop prototype continuous'
+
+stop prototype continuous:
+  extends: stop preview
+  variables:
+    CI_MERGE_REQUEST_ID: p${CI_PROJECT_ID}-cont
+  environment:
+    name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
+    action: stop
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+      when: manual

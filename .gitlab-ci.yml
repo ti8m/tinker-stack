@@ -141,6 +141,16 @@ build prototype:
     paths:
       - prototype/build
 
+verify generator:
+  stage: build
+  script:
+    - TEMP_DIR=$(mktemp -d)
+    - cd $TEMP_DIR
+    - npx create-remix@latest --template $CI_BUILDS_DIR --debug --install --init-script
+      --no-git-init ./my-remix-app
+    - cd my-remix-app
+    - npm run typecheck
+
 ############################################################
 #
 #   Publish stage
@@ -162,8 +172,8 @@ pages:
   publish: docs/build
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      # changes:
-      #   - 'docs/**/*'
+      changes:
+        - 'docs/**/*'
 
 publish prototype continuous:
   extends: create preview

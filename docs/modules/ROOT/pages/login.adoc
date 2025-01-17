@@ -24,7 +24,7 @@ Browser -> MSW: POST /auth/login
 note right: Form Data mit Username
 MSW -> Data: Token lookup
 Data --> MSW: JWT Payload
-MSW -> MSW: Permissions aus\nGruppen ermitteln
+MSW -> MSW: Permissions aus\nRollen ermitteln
 MSW --> Browser: Set-Cookie: authToken
 @enduml
 ----
@@ -35,7 +35,7 @@ MSW --> Browser: Set-Cookie: authToken
 |===
 |Persona |Organisation |Permissions
 
-|Superuser
+|Administrator
 |Primär-Organisation
 |Alle Org-Berechtigungen
 
@@ -48,8 +48,8 @@ Die Auth-Prüfung erfolgt in den MSW Handlers:
 [source,typescript]
 ----
 // Beispiel eines geschützten msw Endpoints
-http.get('/jahresplanung/anlaesse', async ({ cookies }) => {
-  const { omId, organisationId, permissions } = auth(cookies);
+http.post('/reports/approve', async ({ cookies }) => {
+  const { sub, orgId, permissions } = auth(cookies);
   // ... Handler Implementation
 });
 ----

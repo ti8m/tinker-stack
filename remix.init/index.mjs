@@ -10,8 +10,8 @@ export default async function main({ rootDirectory }) {
 	const ENV_PATH = path.join(rootDirectory, '.env');
 	const PKG_PATH = path.join(rootDirectory, 'package.json');
 
-	const appNameRegex = /planning-stack-template/;
-	const appTitleRegex = /PLANNING STACK TEMPLATE/;
+	const appNameRegex = /planning-stack-template/g;
+	const appTitleRegex = /PLANNING STACK TEMPLATE/g;
 
 	const DIR_NAME = path.basename(rootDirectory);
 
@@ -48,7 +48,7 @@ export default async function main({ rootDirectory }) {
 		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'pages', 'index.adoc'),
 		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'pages', 'monorepo.adoc'),
 		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'pages', 'prototype.adoc'),
-		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'partials', 'monorepo.adoc'),
+		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'partials', 'monorepo.puml'),
 		path.join(rootDirectory, 'docs', 'modules', 'ROOT', 'nav.adoc'),
 		path.join(rootDirectory, 'docs', 'antora-playbook.yml'),
 		path.join(rootDirectory, 'docs', 'package.json'),
@@ -61,13 +61,13 @@ export default async function main({ rootDirectory }) {
 	for (const file of filesWithAppTitle) {
 		const fileContent = await fs.readFile(file, 'utf-8');
 		const newFile = fileContent.replaceAll(appTitleRegex, APP_TITLE);
-		await fs.writeFile(newFile, newFile);
+		await fs.writeFile(file, newFile);
 	}
 	// Replace all instances of the app name
 	for (const file of filesWithAppName) {
 		const fileContent = await fs.readFile(file, 'utf-8');
 		const newFile = fileContent.replaceAll(appNameRegex, APP_NAME);
-		await fs.writeFile(newFile, newFile);
+		await fs.writeFile(file, newFile);
 	}
 
 	const newEnv = env.replace(/^SESSION_SECRET=.*$/m, `SESSION_SECRET="${getRandomString(16)}"`);
