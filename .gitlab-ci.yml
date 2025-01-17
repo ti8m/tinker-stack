@@ -1,7 +1,7 @@
 # Root CI File
 
 include:
-  - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/environments@1.0
+  - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/preview@1.0
     inputs:
       build_job: 'build prototype'
       stage: publish
