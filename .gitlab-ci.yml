@@ -144,10 +144,13 @@ build prototype:
 verify generator:
   stage: build
   script:
+    - echo $CI_BUILDS_DIR
+    - pwd
+    - CURRENT_DIR=$(pwd)
     - TEMP_DIR=$(mktemp -d)
     - cd $TEMP_DIR
-    - npx create-remix@latest --template $CI_BUILDS_DIR --debug --install --init-script
-      --no-git-init ./my-remix-app
+    - npx create-remix@latest --template $CURRENT_DIR --debug --install --init-script --no-git-init
+      ./my-remix-app
     - cd my-remix-app
     - npm run typecheck
 
