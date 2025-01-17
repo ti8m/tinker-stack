@@ -1,0 +1,5 @@
+name: 'planning-stack-template-frontend'
+title: 'PLANNING STACK TEMPLATE Frontend'
+version: true
+nav:
+  - modules/ROOT/nav.adoc

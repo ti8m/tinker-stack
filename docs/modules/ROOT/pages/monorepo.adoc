@@ -1,0 +1,64 @@
+= Monorepo
+
+Siehe auch README.md.
+
+Wir verwenden Turborepo mit der https://turbo.build/repo/docs/core-concepts/internal-packages#compiled-packages[Compiled Packages] Strategie.
+
+Alle Pakete sind ESM-Module und verwenden den `@repo` Scope.
+
+Dieses Monorepo enthält die folgenden Pakete/Apps:
+
+== Apps und Pakete
+
+- `@repo/frontend`: das Frontend für die PLANNING STACK TEMPLATE Anwendung (noch zu erstellen).
+- `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
+- `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
+- `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
+- `@repo/mock-data`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
+- `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
+- `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen `FAS` und `prototype`
+  gemeinsam genutzt wird
+- `@repo/eslint-config`: `eslint`-Konfigurationen
+- `@repo/typescript-config`: `tsconfig.json`s, die im gesamten Monorepo verwendet werden
+
+== Build
+
+Die Builds sind alle von https://turbo.build[Turborepo] gesteuert und sollten aus dem
+Root-Verzeichnis heraus aufgerufen werden. werden.
+
+Um alle Apps und Pakete zu bauen, führe den folgenden Befehl aus:
+
+```
+npm run build
+```
+
+Es ist auch möglich, nur ein bestimmtes Paket oder eine bestimmte App zu bauen:
+
+```
+npm run build:data
+
+npm run build:msw
+
+npm run build:prototype
+```
+
+### Entwicklung
+
+Aktuell ist standardmässig der Prototyp aktiviert. Um die Entwicklung zu starten, führe den
+folgenden Befehl aus. Dieser startet einen lokalen Server und watcher für die Abhängigen Pakete.
+
+```
+npm run dev
+```
+
+
+
+== Aufbau
+
+[plantuml,monorepo,svg,role=component]
+----
+include::partial$monorepo.puml[]
+----
+
+Das Monorepo verwendet die export und import Direktiven von node ESM Modulen.
+Alle exportierten Namespaces müssen in der package.json Datei aufgelistet werden.

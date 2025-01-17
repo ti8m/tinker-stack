@@ -1,0 +1,42 @@
+@startuml
+!define RECTANGLE class
+
+skinparam component {
+  BackgroundColor<<app>> LightBlue
+  BackgroundColor<<package>> LightGreen
+}
+
+package "PLANNING STACK TEMPLATE Frontend Monorepo" {
+  [prototype]<<app>> as prototype
+  [frontend]<<app>> as frontend
+  [api]<<package>> as api
+  [docs]<<app>> as docs
+  [mock-data]<<package>> as mockData
+  [mock-backend]<<package>> as mockApi
+  [ui]<<package>> as ui
+  [config/eslint]<<package>> as eslintConfig
+  [config/typescript]<<package>> as typescriptConfig
+}
+
+prototype --> api : verwendet
+prototype --> mockApi : verwendet
+prototype --> ui : verwendet
+
+frontend --> api : verwendet
+frontend --> mockApi : verwendet
+frontend --> ui : verwendet
+
+mockApi --> mockData : verwendet
+mockApi --> api : verwendet
+mockData --> api : verwendet
+
+note top of prototype : PLANNING STACK TEMPLATE Anwendung Prototyp
+note top of frontend : PLANNING STACK TEMPLATE Anwendung Frontend
+note bottom of api : Domain-Typen und -Enums
+note bottom of mockData : Synthetische Daten
+note left of mockApi : Mock-API über Service-Worker
+note right of ui : React-Komponentenbibliothek
+note top of eslintConfig : ESLint-Konfigurationen
+note top of typescriptConfig : TypeScript-Konfigurationen
+
+@enduml

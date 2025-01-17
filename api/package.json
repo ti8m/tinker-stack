@@ -1,0 +1,50 @@
+{
+  "name": "@repo/api",
+  "description": "Domain Types und Enums",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc && tsc-alias",
+    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "clean": "rimraf dist && rimraf .turbo",
+    "format": "prettier --write .",
+    "typecheck": "tsc && tsc-alias",
+    "lint": "eslint .",
+    "lint-staged": "lint-staged"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*"
+  },
+  "peerDependencies": {
+    "msw": "^2.4.9"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "exports": {
+    "./commons/types": {
+      "types": "./dist/commons/types.d.ts"
+    },
+    "./commons/enums": {
+      "types": "./dist/commons/enums.d.ts",
+      "import": "./dist/commons/enums.js"
+    },
+    "./demo/types": {
+      "types": "./dist/demo/types.d.ts"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "memoize": "^10.0.0",
+    "msw": "^2.4.9"
+  }
+}

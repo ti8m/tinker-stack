@@ -1,0 +1,145 @@
+= Architektur
+:experimental:
+:plantuml-server-url: http://www.plantuml.com/plantuml
+:source-highlighter: highlight.js
+
+== Überblick
+
+Das PLANNING STACK TEMPLATE Frontend ist als Monorepo mit mehreren Packages aufgebaut. Der Fokus liegt auf:
+
+* Schnelle Iteration durch Prototyping
+* Wiederverwendbare Komponenten
+* Typsicherheit durch TypeScript
+* Realistische Testdaten
+
+== Architekturprinzipien
+
+=== Domain-Driven Design
+
+
+
+
+=== Prototypen-getriebene Entwicklung
+
+Der Entwicklungsprozess folgt einem iterativen Ansatz:
+
+1. Features werden zuerst im Prototyp implementiert
+2. Designer-, Stakeholder- und Benutzer-Feedback wird eingeholt
+3. Validierte Features werden in die produktive Anwendung übernommen
+
+Dies ermöglicht:
+
+* Reduzierung von Entwicklungsrisiken
+* Validierung von UX-Konzepten
+* Schnelles Feedback von Benutzern
+
+=== Typsicherheit
+
+* Strikte TypeScript Konfiguration
+* Zentrale Definition von Domain Types
+* Shared Types zwischen Packages
+
+=== Komponenten-Bibliothek
+
+Die UI-Komponenten sind in einem separaten Package (`@repo/ui`) organisiert:
+
+* Basis auf shadcn/ui, Tailwind UI und Tailwind
+* Wiederverwendbar zwischen Prototyp und Produktion
+* Einheitliches Design-System basierend auf Tailwind UI und dem Figma Design System
+
+== Technische Architektur
+
+Siehe auch xref:monorepo.adoc#aufbau[Monorepo].
+
+=== Frontend Stack
+
+[cols="1,2,2"]
+|===
+|Technologie |Verwendung |Begründung
+
+|React
+|UI Framework
+|Etabliert, grosses Ökosystem
+
+|React Router
+|Full-Stack Framework
+|Gute DX, Server Components
+
+|Tailwind
+|CSS Framework
+|Utility-First, Wartbar
+
+|shadcn/ui
+|UI-Komponenten
+|Zugänglich, Anpassbar
+
+|TypeScript
+|Programmiersprache
+|Typsicherheit, DX
+|===
+
+=== Mock Backend
+
+[plantuml,mock-backend,svg]
+----
+@startuml
+actor Browser
+participant "React Router App" as App
+participant "MSW" as MSW
+database "Mock Data" as Data
+
+Browser -> App: Request
+App -> MSW: API Call
+MSW -> Data: Load Data
+Data --> MSW: Data
+MSW --> App: Response
+App --> Browser: Render
+@enduml
+----
+
+* MSW (Mock Service Worker) für API-Simulation
+* Realistische HTTP-Requests
+* Einfacher Wechsel zu echtem Backend
+
+== Entwicklungsprozess
+
+=== Feature Entwicklung
+
+1. Feature-Anforderung
+2. Prototyp Implementation
+3. User Testing
+4. Feedback Integration
+5. Production Implementation
+
+=== Code Organisation
+
+* Feature-basierte Ordnerstruktur
+* Shared Logic in Utils
+* Typed API Boundaries
+
+== Deployment
+
+=== Prototype
+
+* Automatisches Deployment bei Push auf `main` 
+** URL: 
+** Aktuelle Entwicklungsversion
+* Deployment bei Tag-Commit
+** URL: 
+** Stabile Version für User-Testing
+
+=== Documentation
+
+* Antora Site Generator
+* Deployed zusammen mit Prototype
+* Automatische Updates
+
+== Supporting Subdomain
+
+
+== Zukünftige Entwicklung
+
+* Migration zu Production App
+* API Integration
+* E2E Tests
+* Performance Monitoring 

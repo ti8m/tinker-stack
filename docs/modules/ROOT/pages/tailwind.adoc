@@ -1,0 +1,22 @@
+= Tailwind Tipps und Tricks
+
+Tailwind Docs: https://tailwindcss.com/docs/
+
+== State
+Die Seite soll barrierefrei sein, daher bietet es sich an, die States falls möglich
+auf den jeweiligen Aria-States zu basieren.
+
+.Beispiel Button
+```tsx
+    <Button
+        key={section.id}
+        variant="link"
+        aria-current={activeSection === section.id ? 'step' : undefined}
+        className="w-full justify-start aria-[current=step]:font-bold"
+        onClick={() => scrollToSection(section.id)}
+    >
+```
+
+Hier basiert der Button-State auf dem https://a11y-guidelines.orange.com/en/articles/using-aria-current-attribute/[`aria-current`] Attribut.
+
+https://x.com/shadcn/status/1842329158879420864[Tailwind Tipps von shadcn]

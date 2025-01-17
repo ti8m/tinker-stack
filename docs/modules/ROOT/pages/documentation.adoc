@@ -1,0 +1,93 @@
+= Dokumentation
+:experimental:
+:url-antora-docs: https://docs.antora.org/antora/latest/
+:url-kroki-docs: https://docs.kroki.io/kroki/
+
+== Überblick
+
+Die Entwicklerdokumentation wird mit {url-antora-docs}[Antora] erstellt und über GitLab Pages bereitgestellt.
+
+* URL: 
+* Automatisches Deployment bei Push auf `main`
+* Versionierung über Git
+
+== Struktur
+
+[source]
+----
+docs/
+├── antora.yml          # Antora Projekt-Konfiguration
+├── antora-playbook.yml # Site Generator Konfiguration
+└── modules/
+    └── ROOT/
+        ├── nav.adoc    # Navigation
+        ├── pages/      # Dokumentationsseiten
+        └── partials/   # Wiederverwendbare Inhalte
+----
+
+== Diagramme
+
+Die Dokumentation unterstützt verschiedene Diagrammtypen über {url-kroki-docs}[Kroki]:
+
+=== PlantUML
+
+[source,asciidoc]
+----
+[plantuml,format=svg]
+----
+@startuml
+package "Frontend" {
+  [Components]
+  [Routes]
+}
+[Components] --> [Routes]
+@enduml
+----
+----
+
+=== Weitere Diagrammtypen
+
+* Mermaid
+* C4 (mit PlantUML)
+* GraphViz
+* ...
+
+Siehe {url-kroki-docs}#diagram-types[Kroki Diagram Types] für eine vollständige Liste.
+
+== Lokale Entwicklung
+
+=== Voraussetzungen
+
+* Node.js >= 22.0.0
+* npm >= 10.0.0
+
+=== Dokumentation lokal generieren
+
+[source,bash]
+----
+# Im docs Verzeichnis
+npm run docs
+----
+
+Die generierte Dokumentation ist dann unter `docs/build` verfügbar.
+
+== Best Practices
+
+* Neue Features parallel zur Implementierung dokumentieren
+* Diagramme für komplexe Zusammenhänge nutzen
+* Wiederverwendbare Inhalte in `partials` auslagern
+* Interne Links mit `xref:` erstellen
+
+== Deployment
+
+Das Deployment erfolgt automatisch über die GitLab CI/CD Pipeline:
+
+* Trigger: Push auf `main`
+* Output: Statische Seiten
+* Hosting: GitLab Pages
+
+== Nützliche Links
+
+* {url-antora-docs}[Antora Dokumentation]
+* {url-antora-docs}asciidoc/page/[AsciiDoc Syntax Guide]
+* {url-kroki-docs}[Kroki Dokumentation] 

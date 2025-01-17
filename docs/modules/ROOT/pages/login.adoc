@@ -1,0 +1,62 @@
+= Login Flow (Prototyp)
+:experimental:
+
+== Überblick
+
+Im Prototyp wird ein vereinfachtes Login-System verwendet:
+
+* Cookie-basierte Authentifizierung
+* Mock Implementation mit MSW
+* Vordefinierte Test-Benutzer
+
+== Implementation
+
+=== Mock Service Worker
+
+[plantuml,mock-auth,svg]
+----
+@startuml
+participant "Browser" as Browser
+participant "MSW Handler" as MSW
+database "Mock Data" as Data
+
+Browser -> MSW: POST /auth/login
+note right: Form Data mit Username
+MSW -> Data: Token lookup
+Data --> MSW: JWT Payload
+MSW -> MSW: Permissions aus\nGruppen ermitteln
+MSW --> Browser: Set-Cookie: authToken
+@enduml
+----
+
+=== Test-Benutzer
+
+[cols="1,2,1"]
+|===
+|Persona |Organisation |Permissions
+
+|Superuser
+|Primär-Organisation
+|Alle Org-Berechtigungen
+
+|===
+
+== Authentifizierung
+
+Die Auth-Prüfung erfolgt in den MSW Handlers:
+
+[source,typescript]
+----
+// Beispiel eines geschützten msw Endpoints
+http.get('/jahresplanung/anlaesse', async ({ cookies }) => {
+  const { omId, organisationId, permissions } = auth(cookies);
+  // ... Handler Implementation
+});
+----
+
+== Hinweise
+
+* Diese Implementation ist nur für den Prototyp, sollte aber ähnlich sein zu der späteren Produktiv-Implementation
+* Keine echte Sicherheit
+* Dient nur der Feature-Entwicklung
+* Produktive Implementation erfolgt später mit IAM

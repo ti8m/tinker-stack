@@ -1,0 +1,12 @@
+{
+  "name": "@repo/frontend",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "@repo/api": "*",
+    "@repo/mock-backend": "*",
+    "@repo/ui": "*"
+  }
+}

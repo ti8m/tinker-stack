@@ -1,0 +1,78 @@
+= PLANNING STACK TEMPLATE Frontend Dokumentation
+:description: Entwicklerdokumentation für das PLANNING STACK TEMPLATE Frontend
+:experimental:
+
+== Über dieses Projekt
+
+Beschreibung des Projekts
+
+== Module
+
+.Frontend-Struktur
+image::Prototyp-Repo.drawio.png[Repository-Struktur]
+
+Das Projekt ist als Monorepo mit folgenden Hauptmodulen aufgebaut:
+
+[cols="1,4"]
+|===
+|Modul |Beschreibung
+
+|@repo/api 
+|Domain-Typen und Enums
+
+|@repo/docs
+|Diese Dokumentation
+
+|@repo/e2e
+|End-to-End und Integrations-Tests (Browser-Tests)
+
+|@repo/frontend
+|Frontend-Anwendung
+
+|@repo/mock-backend
+|Mock-Backend mit MSW
+
+|@repo/mock-data
+|Synthetische Testdaten-Generator
+
+|@repo/prototype
+|Klickbarer UX-Prototyp für schnelles Feedback
+
+|@repo/ui
+|Design-System und Komponenten-Bibliothek
+
+|===
+
+Das Mock-API muss mit dem Backend synchron gehalten werden. Somit ist es möglich, die Frontend-Anwendung lokal zu entwickeln und gleichzeitig das Backend zu testen.
+
+Ausserdem ist es dadurch möglich, mit dem Prototypen gegen das echte Backend zu testen.
+
+
+== Technologie-Stack
+
+Das Frontend basiert auf folgenden Haupttechnologien:
+
+* *React* mit TypeScript für die UI-Entwicklung
+* *Tailwind CSS* mit shadcn/ui für das Design-System
+* *Turborepo* für das Monorepo-Management
+* *MSW* (Mock Service Worker) für das Mock-Backend
+* *Antora* für die Dokumentation
+
+Die Technologie für das Frontend ist noch offen. Empfohlen wird 
+React Router v7 als Framework (Isomorph). 
+
+Der Prototyp verwendet React Router SPA, damit er auf einem Shared-Host deployed werden kann.
+
+== Erste Schritte
+
+Siehe xref:getting-started.adoc[Erste Schritte] für Setup-Anweisungen und einen Überblick über die Entwicklungsumgebung.
+
+== Architektur 
+
+Die Anwendung folgt einer prototypen-getriebenen Entwicklung:
+
+1. Schnelle Iteration über Features im Prototyp
+2. Feedback von Benutzern einholen
+3. Validierte Features in die produktive Anwendung übernehmen
+
+Mehr Details zur Architektur unter xref:architecture.adoc[Architektur]. 

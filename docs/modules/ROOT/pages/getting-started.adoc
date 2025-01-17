@@ -1,0 +1,139 @@
+= Erste Schritte
+:experimental:
+:icons: font
+
+
+
+== Voraussetzungen
+
+Für die Entwicklung werden folgende Tools benötigt:
+
+* Node.js >= 22
+* npm >= 10
+* Git
+
+== Repository klonen
+
+[source,bash]
+----
+git clone TODO
+cd planning-stack-template
+----
+
+== Installation
+
+Das Projekt verwendet npm Workspaces. Alle Abhängigkeiten können mit einem Befehl installiert werden:
+
+[source,bash]
+----
+npm install
+----
+
+== Entwicklungsumgebung einrichten
+
+=== Mock-Daten generieren
+
+Vor dem ersten Start müssen die Mock-Daten generiert werden:
+
+[source,bash]
+----
+npm run build:data
+----
+
+=== Entwicklungsserver starten
+
+Der Entwicklungsserver kann mit folgendem Befehl im Root-Verzeichnis des Repos gestartet werden:
+
+[source,bash]
+----
+npm run dev
+----
+
+Dies startet:
+
+* Den https://reactrouter.com/home[React Router] Entwicklungsserver (Prototyp)
+* Einen Watcher für die Mock-Daten
+* Einen Watcher für die UI-Komponenten
+
+Die Anwendung ist dann unter http://localhost:5173 erreichbar.
+
+== Projektstruktur
+
+[source]
+----
+.
+├── api/             # Domain Types & Enums
+├── config/
+│   ├── eslint/      # ESLint Konfigurationen
+│   ├── typescript/  # Typescript Konfigurationen
+├── docs/            # Dokumentation
+├── frontend/        # Produktives Frontend (noch nicht eingerichtet)
+├── mock-data/       # Testdaten Generator
+├── mock-api/        # Mock Backend
+├── prototype/       # Klickbarer UX-Prototyp
+└── ui/              # Design-System Komponenten
+----
+
+
+== IDE Konfiguration
+
+=== VS Code
+
+Empfohlene Extensions:
+
+* ESLint
+* Prettier
+* Tailwind CSS IntelliSense
+* AsciiDoc
+
+Die Projekteinstellungen für VS Code sind bereits im Repository enthalten.
+
+=== WebStorm
+
+Für WebStorm müssen folgende Plugins installiert werden:
+
+* Tailwind CSS
+* AsciiDoc
+
+== Typische Entwicklungsabläufe
+
+=== Neue Feature im Prototyp entwickeln
+
+1. Feature-Branch erstellen
+2. Route in `prototype/app/routes` anlegen
+3. UI mit shadcn/ui Komponenten aufbauen
+4. Mock-Daten in `mock-data` erweitern falls nötig
+5. Feature testen und iterieren
+6. Pull Request erstellen
+
+=== UI-Komponente hinzufügen
+
+1. Komponente in `packages/ui/src/components` erstellen
+2. Storybook Story schreiben
+3. Tests hinzufügen
+4. Komponente exportieren und im Prototyp verwenden
+
+== Nächste Schritte
+
+* xref:architecture.adoc[Architektur] verstehen
+* xref:prototype.adoc[Prototyp] kennenlernen
+* xref:design-system.adoc[Design System] erkunden
+
+== Troubleshooting
+
+=== Bekannte Probleme
+
+[qanda]
+Typescript Fehler nach npm install::
+  Führen Sie `npm run build` aus, um alle Packages zu bauen.
+
+Mock-Daten werden nicht aktualisiert::
+  Löschen Sie den `.cache` Ordner und führen Sie `npm run build:data` erneut aus.
+
+=== Support
+
+Bei Problemen:
+
+1. Prüfen Sie die bekannten Probleme
+2. Suchen Sie in den GitHub Issues
+3. Erstellen Sie ein neues Issue 

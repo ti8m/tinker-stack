@@ -1,0 +1,52 @@
+{
+  "name": "planning-stack-template",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "build:data": "turbo run build:data",
+    "build:msw": "turbo build --filter=@repo/mock-backend",
+    "build:prototype": "turbo build --filter=@repo/prototype",
+    "dev": "turbo run dev",
+    "docs": "turbo run docs",
+    "postinstall": "patch-package",
+    "lint": "turbo run lint -- --fix",
+    "typecheck": "turbo run typecheck",
+    "clean": "rimraf .turbo && turbo run clean",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "@repo/api": "*",
+    "eslint-plugin-import": "^2.31.0",
+    "patch-package": "^8.0.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "tsc-alias": "^1.8.10",
+    "turbo": "^2.3.1",
+    "typescript": "^5.6.2",
+    "vite": "^6.0.7",
+    "vitest": "^3.0.1",
+    "vite-tsconfig-paths": "^5.0.1"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "resolutions": {
+    "typescript": "5.7.2"
+  },
+  "type": "module",
+  "packageManager": "npm@10.8.3",
+  "workspaces": [
+    "api",
+    "config/eslint",
+    "config/typescript",
+    "docs",
+    "frontend",
+    "mock-data",
+    "mock-backend",
+    "prototype",
+    "ui"
+  ],
+  "dependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

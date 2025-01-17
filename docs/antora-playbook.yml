@@ -1,0 +1,22 @@
+site:
+  title: PLANNING STACK TEMPLATE Dokumentation
+  start_page: planning-stack-template-frontend::index.adoc
+  url: https://frontend-6dd0b0.pages.ti8m.ch
+content:
+  sources:
+    - url: ../
+      branches: HEAD
+      start_path: docs
+ui:
+  bundle:
+    url: https://gitlab.com/antora/antora-ui-default/-/jobs/artifacts/HEAD/raw/build/ui-bundle.zip?job=bundle-stable
+    snapshot: true
+output:
+  dir: ./build
+asciidoc:
+  attributes:
+    # makes the extension download and store diagrams in Antora's _images folder (in output dir)
+    kroki-fetch-diagram: true
+    product: PLANNING STACK TEMPLATE
+  extensions:
+    - asciidoctor-kroki

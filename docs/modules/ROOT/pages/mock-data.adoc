@@ -1,0 +1,46 @@
+= Testdaten
+:experimental:
+
+== Überblick
+
+Das `@repo/mock-data` Package generiert synthetische Testdaten für die Entwicklung. Die Daten sind:
+
+* Realistisch und konsistent
+* Typsicher durch TypeScript
+* Reproduzierbar durch feste Seeds
+
+Die Daten werden im Entwicklungs-Modus On-The-Fly beim Reload der Applikation generiert.
+
+== Generator
+
+=== Technologie
+
+* https://fakerjs.dev/[Faker.js] für realistische Daten
+* TypeScript für Typsicherheit
+* 3 vorgegebene Konfigurationen für unterschiedliche Datenmengen
+  ** `small`: Für manuelle Prüfung der erstellten Daten.
+  ** `medium`: Für automatisches Testen und Entwicklung.
+  ** `full`: Alle Organisationen, für vollständige Tests.
+
+
+=== Verwendung
+
+Siehe `@repo/mock-data/README.md`
+
+Der Ordner enthält Generator-Klassen für die einzelnen Entitäten.
+
+In der Datei `dataset.ts` werden die einzelnen Generatoren zu einem Datensatz zusammengefasst.
+
+== Daten erweitern
+
+1. Domain-Types in `@repo/api` definieren und falls nötig im lokalen Repository anpassen.
+2. Generator in `@repo/mock-data/src/generators` erstellen
+3. In `dataset.ts` integrieren
+4. Build mit `npm run build:data`
+
+== Best Practices
+
+* Realistische Wertebereiche verwenden
+* Beziehungen zwischen Entitäten beachten
+* Lokale Besonderheiten berücksichtigen (z.B. Schweizer Adressen)
+* Reproduzierbarkeit durch Seeds sicherstellen 

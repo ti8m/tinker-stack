@@ -1,0 +1,62 @@
+{
+  "name": "@repo/mock-backend",
+  "version": "0.1.0",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc && tsc-alias",
+    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "clean": "rimraf dist && rimraf .turbo",
+    "format": "prettier --write .",
+    "typecheck": "tsc && tsc-alias",
+    "lint": "eslint src",
+    "lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "@repo/api": "*",
+    "@repo/mock-data": "2024.0.0",
+    "@tinyhttp/cookie": "^2.1.1",
+    "memoize": "^10.0.0",
+    "msw": "^2.4.9",
+    "query-string": "^9.1.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.7.4",
+    "openapi-typescript": "^7.4.1",
+    "prettier": "^3.3.3"
+  },
+  "peerDependencies": {
+    "msw": "^2.4.9"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./handlers": {
+      "types": "./dist/src/handlers/index.d.ts",
+      "import": "./dist/src/handlers/index.js"
+    },
+    "./medium": {
+      "types": "./dist/src/medium/index.d.ts",
+      "import": "./dist/src/medium/index.js"
+    },
+    "./full": {
+      "types": "./dist/src/full/index.d.ts",
+      "import": "./dist/src/full/index.js"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

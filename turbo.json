@@ -1,0 +1,56 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", "build/client/**"]
+    },
+    "@repo/mock-data#generate:medium": {
+      "dependsOn": ["^@repo/mock-data#build"],
+      "outputs": ["data-mocks/mock-data.medium.json", "data-mocks/hints.medium.json"]
+    },
+    "@repo/mock-data#generate:small": {
+      "dependsOn": ["^@repo/mock-data#build"],
+      "outputs": ["data-mocks/mock-data.small.json", "data-mocks/hints.small.json"]
+    },
+    "build:data": {
+      "dependsOn": ["^@repo/mock-data#generate:small", "^@repo/mock-data#generate:medium"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "docs": {
+      "inputs": ["$TURBO_DEFAULT$", "antora-playbook.yml"],
+      "outputs": ["build/**"]
+    },
+    "clean": {
+      "cache": false,
+      "dependsOn": []
+    },
+    "typecheck": {
+      "outputs": ["dist/**"],
+      "dependsOn": ["^typecheck"]
+    },
+    "@repo/prototype#typecheck": {
+      "outputs": [".react-router/**"],
+      "dependsOn": ["^typecheck"]
+    },
+    "@repo/prototype#build": {
+      "inputs": ["public/**", "react-router.config.ts", "vite.config.ts", "taiwind.config.js"],
+      "dependsOn": ["^@repo/mock-backend#build"],
+      "outputs": ["build/client/**"]
+    },
+    "@repo/frontend#typecheck": {
+      "outputs": [".react-router/**"],
+      "dependsOn": ["^typecheck"]
+    },
+    "@repo/ui#typecheck": {
+      "outputs": [],
+      "dependsOn": ["^typecheck"]
+    }
+  }
+}
