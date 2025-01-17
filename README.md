@@ -1,76 +1,47 @@
-# PLANNING STACK TEMPLATE Frontend Monorepo
+# Frontend Monorepo for Rapid Prototyping
 
-Dieses Monorepo enthält alle Module und Apps für das PLANNING STACK TEMPLATE Frontend. Inklusive der
-Testdaten und des Prototyps.
+This is a [Remix Template](https://remix.run/docs/en/main/guides/templates) for a Frontend Monorepo.
+It puts emphasis on rapid prototyping and a prototype-driven development
+([Pixar Planning](https://www.youtube.com/watch?v=gbuWJ48T0bE&t=1294s)).
 
-## Was ist enthalten?
+## What is included?
 
-Dieses Monorepo enthält die folgenden Pakete/Apps:
+This monorepo contains the following packages/apps:
 
-### Apps und Pakete
+### Apps and Packages
 
-- `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
-- `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
-- `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
-- `@repo/mock-data`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
-- `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
-- `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen
-  `PLANNING STACK TEMPLATE` und `prototype` gemeinsam genutzt wird
-- `@repo/eslint-config`: `eslint`-Konfigurationen (enthält `eslint-config-next` und
-  `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s, die im gesamten Monorepo verwendet werden
+- A prototype for the application, based on React Router SPA.
+- A package that provides the domain types and enums.
+- A documentation in Antora format with automatic deployment to Gitlab Pages.
+- A package that provides synthetic data for the applications.
+- A package that provides a mock API via service workers.
+- A basic React component library shared by the main application and the prototype.
+- ESLint and TypeScript configurations that are shared throughout the monorepo.
+- Turborepo for building and running the monorepo.
 
-Jedes Paket/jede App ist in [TypeScript](https://www.typescriptlang.org/) geschrieben.
+Each package/app is written in [TypeScript](https://www.typescriptlang.org/).
 
-## Dokumentation
+The prototype is automatically deployed to a preview server on a push to the `main` branch or a
+tagged commit.
 
-Die Entwickler-Dokumentation befindet sich im Ordner `docs`. Sie wird automatisch mittels
-Gitlab-Pages
-[hier](https://frontend-6dd0b0.pages.ti8m.ch/planning-stack-template-frontend/HEAD/index.html)
-veröffentlicht.
+## Documentation
 
-Die Projekt-Dokumentation ist in [AsciiDoc](https://asciidoctor.org/) verfasst und wird mittels
-[Antora](https://antora.org/) generiert.
+The developer documentation is located in the `docs` folder. It is automatically published via
+Gitlab Pages.
 
-## Build
+The project documentation is written in [AsciiDoc](https://asciidoctor.org/) and is generated using
+[Antora](https://antora.org/).
 
-Die Builds sind alle von [Turborepo](https://turbo.build) gesteuert und sollten aus dem
-Root-Verzeichnis heraus aufgerufen werden. werden.
+## Getting Started
 
-Um alle Apps und Pakete zu bauen, führe den folgenden Befehl aus:
+To get started, download the template from Gitlab
 
-```
-npm run build
-```
+https://gitlab.ti8m.ch/bao/tinker-stack/-/archive/main/tinker-stack-main.tar.gz
 
-Es ist auch möglich, nur ein bestimmtes Paket oder eine bestimmte App zu bauen:
+Then run the following command:
 
-```
-npm run build:data
-
-npm run build:msw
-
-npm run build:prototype
+```bash
+npx create-remix@latest --template ~/Downloads/tinker-stack-main.tar.gz
 ```
 
-### Entwicklung
-
-Bevor der Dev-Server zum ersten Mal gestartet werden kann, müssen die Mock-Daten gebaut werden.
-
-```
-npm run build:data
-```
-
-Aktuell ist standardmässig der Prototyp aktiviert. Um die Entwicklung zu starten, führe den
-folgenden Befehl aus. Dieser startet einen lokalen Server und watcher für die Abhängigen Pakete.
-
-```
-npm run dev
-```
-
-### Publish
-
-Der Prototyp sollte automatisch bei einem Push auf die `main`-Branch auf einen Preview-Server
-deployed werden.
-
-Die Dokumentation wird bei einem Push auf die `main`-Branch mittels Gitlab-Pages deployed.
+TODO: Update the URL once the template is published to Github.
