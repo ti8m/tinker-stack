@@ -1,3 +1,4 @@
+import inquirer from 'inquirer';
 import { execSync } from 'node:child_process';
 import crypto from 'node:crypto';
 import fs from 'node:fs/promises';
@@ -20,7 +21,7 @@ export default async function main({ rootDirectory }) {
 		.replace(/[^a-zA-Z0-9-_]/g, '-')
 		.toLowerCase();
 
-	const APP_TITLE = 'Demo Title'; // TODO: get from user
+	const APP_TITLE = await getTitle();
 
 	const [env, packageJsonString] = await Promise.all([
 		fs.readFile(EXAMPLE_ENV_PATH, 'utf-8'),
@@ -70,8 +71,6 @@ export default async function main({ rootDirectory }) {
 		await fs.writeFile(file, newFile);
 	}
 
-	const newEnv = env.replace(/^SESSION_SECRET=.*$/m, `SESSION_SECRET="${getRandomString(16)}"`);
-
 	const packageJson = JSON.parse(packageJsonString);
 
 	packageJson.name = APP_NAME;
@@ -79,7 +78,7 @@ export default async function main({ rootDirectory }) {
 	delete packageJson.license;
 
 	const fileOperationPromises = [
-		fs.writeFile(ENV_PATH, newEnv),
+		fs.copyFile(EXAMPLE_ENV_PATH, ENV_PATH),
 		fs.writeFile(PKG_PATH, JSON.stringify(packageJson, null, 2)),
 		fs.rm(path.join(rootDirectory, 'LICENSE.md')),
 		fs.copyFile(
@@ -118,4 +117,21 @@ What's next?
 - Iterate
 		`.trim(),
 	);
+}
+
+async function getTitle() {
+	// Check if we are in interactive mode
+	if (process.env.CI) {
+		return 'Demo Title';
+	}
+
+	const { title } = await inquirer.prompt([
+		{
+			type: 'input',
+			name: 'title',
+			message: 'Enter the title of the app',
+		},
+	]);
+
+	return title;
 }

@@ -1,4 +1,5 @@
 # Root CI File
+# Check for more CI components in https://gitlab.ti8m.ch/explore/catalog
 
 include:
   - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/preview@1.0
