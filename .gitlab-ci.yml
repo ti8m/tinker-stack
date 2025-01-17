@@ -104,7 +104,8 @@ verify:
     - node --version
     - npm --version
     - npm ci
-    - ./node_modules/.bin/turbo run typecheck --concurrency=1
+    - ./node_modules/.bin/turbo run typecheck
+    - ./node_modules/.bin/turbo run lint
   artifacts:
     when: always
     expire_in: 5 days
@@ -112,6 +113,15 @@ verify:
       - gl-code-quality-report.json
     reports:
       codequality: 'gl-code-quality-report.json'
+
+test:
+  stage: verify
+  interruptible: true
+  needs:
+    - job: install dependencies
+      optional: true
+  script:
+    - ./node_modules/.bin/turbo run test
 
 ############################################################
 #

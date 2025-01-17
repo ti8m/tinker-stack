@@ -19,6 +19,7 @@
       "dependsOn": ["^@repo/mock-data#generate:small", "^@repo/mock-data#generate:medium"]
     },
     "lint": {},
+    "test": {},
     "dev": {
       "cache": false,
       "persistent": true

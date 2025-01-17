@@ -10,6 +10,7 @@
     "docs": "turbo run docs",
     "postinstall": "patch-package",
     "lint": "turbo run lint -- --fix",
+    "test": "turbo run test",
     "typecheck": "turbo run typecheck",
     "clean": "rimraf .turbo && turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
