@@ -91,6 +91,8 @@ force install dependencies:
 verify:
   stage: verify
   interruptible: true
+  variables:
+    ESLINT_CODE_QUALITY_REPORT: 'gl-code-quality-report.json'
   cache:
     - <<: *npm_cache
     - key: verify-$CI_COMMIT_REF_SLUG
