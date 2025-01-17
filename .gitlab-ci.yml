@@ -162,13 +162,13 @@ pages:
   publish: docs/build
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      changes:
-        - 'docs/**/*'
+      # changes:
+      #   - 'docs/**/*'
 
 publish prototype continuous:
   extends: create preview
   variables:
-    CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
+    CI_MERGE_REQUEST_ID: p${CI_PROJECT_ID}-cont
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   environment:
@@ -179,7 +179,7 @@ publish prototype continuous:
 stop prototype continuous:
   extends: stop preview
   variables:
-    CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
+    CI_MERGE_REQUEST_ID: p${CI_PROJECT_ID}-cont
   environment:
     name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
     action: stop
