@@ -180,6 +180,9 @@ stop prototype continuous:
   extends: stop preview
   variables:
     CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
+  environment:
+    name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
+    action: stop
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
       when: manual
