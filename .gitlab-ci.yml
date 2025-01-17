@@ -1,9 +1,10 @@
 # Root CI File
 
 include:
-  - component: 'gitlab.ti8m.ch/frontend-components/environments/preview@1.0'
+  - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/preview@1.0
+    build_job: 'build prototype'
     stage: publish
-    build_folder: prototype/build/client
+    build_folder: 'prototype/build/client'
 
 default:
   image: node:22
