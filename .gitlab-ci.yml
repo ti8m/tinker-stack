@@ -166,7 +166,7 @@ pages:
         - 'docs/**/*'
 
 publish prototype continuous:
-  extends: publish preview
+  extends: create preview
   variables:
     CI_MERGE_REQUEST_ID: ${CI_PROJECT_ID}-cont
   rules:
