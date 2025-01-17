@@ -153,6 +153,8 @@ verify generator:
       ./my-remix-app
     - cd my-remix-app
     - npm run typecheck
+    - cd $CURRENT_DIR
+    - rm -rf $TEMP_DIR
 
 ############################################################
 #
