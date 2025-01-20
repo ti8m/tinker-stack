@@ -32,7 +32,7 @@
     "node": ">=22"
   },
   "resolutions": {
-    "typescript": "5.7.2"
+    "typescript": "5.7.3"
   },
   "type": "module",
   "packageManager": "npm@10.8.3",
