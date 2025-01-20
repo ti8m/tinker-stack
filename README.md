@@ -1,6 +1,9 @@
 # Frontend Monorepo for Rapid Prototyping
 
-This is a [Remix Template](https://remix.run/docs/en/main/guides/templates) for a Frontend Monorepo.
+This is a [Create-Remix Template](https://remix.run/docs/en/main/guides/templates) for a Frontend
+Monorepo. (Create-Remix is only used to generate the initial project structure, the project itself
+does not use Remix.)
+
 It puts emphasis on rapid prototyping and a prototype-driven development
 ([Pixar Planning](https://www.youtube.com/watch?v=gbuWJ48T0bE&t=1294s)).
 
@@ -12,12 +15,20 @@ This monorepo contains the following packages/apps:
 
 - A prototype for the application, based on React Router SPA.
 - A package that provides the domain types and enums.
-- A documentation in Antora format with automatic deployment to Gitlab Pages.
-- A package that provides synthetic data for the applications.
-- A package that provides a mock API via service workers.
-- A basic React component library shared by the main application and the prototype.
+- A documentation in Antora (AsciiDoc) format.
+- A package that provides synthetic data for the applications using
+  [Faker.js](https://fakerjs.dev/).
+- A package that provides a mock API via service workers using [MSW](https://mswjs.io/).
+- A component library that is shared by the main application and the prototype.
 - ESLint and TypeScript configurations that are shared throughout the monorepo.
+
+### Features
+
+- Monorepo based on ESM standards.
 - Turborepo for building and running the monorepo.
+- Pre-Configured CI Pipeline for Gitlab CI.
+- Continuous deployment for the prototype and preview environments for merge-requests.
+- Automatic deployment of the documentation to Gitlab Pages.
 
 Each package/app is written in [TypeScript](https://www.typescriptlang.org/).
 
@@ -43,5 +54,3 @@ Then run the following command:
 ```bash
 npx create-remix@latest --template ~/Downloads/tinker-stack-main.tar.gz
 ```
-
-TODO: Update the URL once the template is published to Github.
