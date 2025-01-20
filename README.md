@@ -29,6 +29,8 @@ This monorepo contains the following packages/apps:
 - Pre-Configured CI Pipeline for Gitlab CI.
 - Continuous deployment for the prototype and preview environments for merge-requests.
 - Automatic deployment of the documentation to Gitlab Pages.
+- Code formatting with [Prettier](https://prettier.io/) and linting with
+  [ESLint](https://eslint.org/).
 
 Each package/app is written in [TypeScript](https://www.typescriptlang.org/).
 
