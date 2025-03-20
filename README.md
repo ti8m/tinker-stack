@@ -47,12 +47,8 @@ The project documentation is written in [AsciiDoc](https://asciidoctor.org/) and
 
 ## Getting Started
 
-To get started, download the template from Gitlab
-
-https://gitlab.ti8m.ch/bao/tinker-stack/-/archive/main/tinker-stack-main.tar.gz
-
-Then run the following command:
+To get started, run the following command:
 
 ```bash
-npx create-remix@latest --template ~/Downloads/tinker-stack-main.tar.gz
+npx create-remix@latest --template ti8m/tinker-stack
 ```
