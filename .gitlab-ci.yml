@@ -1,7 +1,7 @@
 # Root CI File
 
 include:
-  - component: $CI_SERVER_HOST/ti8m-forge-pipelines/ci-components/gitlab-environments/preview@1.0
+  - component: $CI_SERVER_HOST/$CI_COMPONENT_DIR/gitlab-environments/preview@1.0
     inputs:
       build_job: 'build prototype'
       stage: publish
@@ -188,7 +188,7 @@ publish prototype continuous:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   environment:
     name: 'prototype/${CI_PROJECT_PATH_SLUG}/continuous'
-    url: 'https://${CI_MERGE_REQUEST_ID}.review.gitlab.ti8m.ch'
+    url: $CI_MERGE_REQUEST_REVIEW_URL
     on_stop: 'stop prototype continuous'
 
 stop prototype continuous:
