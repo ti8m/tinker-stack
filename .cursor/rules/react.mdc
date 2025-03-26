@@ -1,0 +1,18 @@
+---
+description: 
+globs: *.tsx
+alwaysApply: false
+---
+
+# Rules for authoring React components
+
+- React is not just a UI framework but also a concept of how a UI is composed. Information should only flow downwards (One-Way dataflow). Never break this concept.
+- Only trigger updates through events / actions or handlers.
+- Avoid Refs to a child component. Use Props / Context instead and have the child component react to a change in props. Never trigger changes on a different component explicitly.
+- React uses functional concepts instead of OOP concepts.
+- Components and Hooks must be pure.
+- Prefer useReducer over multiple useStates in the same component.
+- Document the code in a way that you still understand it a year later.
+
+
+

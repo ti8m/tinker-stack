@@ -1,0 +1,11 @@
+---
+description: 
+globs: *.spec.tsx
+alwaysApply: false
+---
+
+# Tests
+
+- This project is using Testing-Library
+- Use semantic selectors from testing-library over querySelector().
+- Prefer user-event over fireEvent.
