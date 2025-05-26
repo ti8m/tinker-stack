@@ -5,7 +5,8 @@
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": ["dist/**", "build/client/**"]
+      "outputs": ["dist/**", "build/client/**"],
+      "env": ["VITE_BUILD_NUMBER", "VITE_VERSION"]
     },
     "@repo/mock-data#generate:medium": {
       "dependsOn": ["^@repo/mock-data#build"],
@@ -43,7 +44,8 @@
     "@repo/prototype#build": {
       "inputs": ["public/**", "react-router.config.ts", "vite.config.ts", "taiwind.config.js"],
       "dependsOn": ["^@repo/mock-backend#build"],
-      "outputs": ["build/client/**"]
+      "outputs": ["build/client/**"],
+      "env": ["VITE_BUILD_NUMBER", "VITE_VERSION"]
     },
     "@repo/frontend#typecheck": {
       "outputs": [".react-router/**"],
