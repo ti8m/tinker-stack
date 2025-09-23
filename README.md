@@ -1,6 +1,6 @@
 # Frontend Monorepo for Rapid Prototyping
 
-This is a [Create-Remix Template](https://remix.run/docs/en/main/guides/templates) for a Frontend
+This is a [npm Template](https://remix.run/docs/en/main/guides/templates) for a Frontend
 Monorepo. (Create-Remix is only used to generate the initial project structure, the project itself
 does not use Remix.)
 

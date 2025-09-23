@@ -6,7 +6,7 @@ import path from 'node:path';
 
 const getRandomString = length => crypto.randomBytes(length).toString('hex');
 
-export default async function main({ rootDirectory }) {
+export async function main({ rootDirectory }) {
 	const EXAMPLE_ENV_PATH = path.join(rootDirectory, '.env.example');
 	const ENV_PATH = path.join(rootDirectory, '.env');
 	const PKG_PATH = path.join(rootDirectory, 'package.json');
