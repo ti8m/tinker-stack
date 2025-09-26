@@ -8,7 +8,7 @@ include:
       build_folder: 'prototype/build/client'
 
 default:
-  image: node:22
+  image: node:24
   interruptible: true
   # Usage of global_cache key to override the default push-pull policy
   # https://docs.gitlab.com/ee/ci/caching/index.html

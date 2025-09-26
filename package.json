@@ -6,36 +6,34 @@
     "build:data": "turbo run build:data",
     "build:msw": "turbo build --filter=@repo/mock-backend",
     "build:prototype": "turbo build --filter=@repo/prototype",
+    "clean": "rimraf .turbo && turbo run clean",
     "dev": "turbo run dev",
     "docs": "turbo run docs",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "postinstall": "patch-package",
     "lint": "turbo run lint -- --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "clean": "rimraf .turbo && turbo run clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "upgrade": "npx npm-check-updates --interactive"
   },
   "devDependencies": {
     "@repo/api": "*",
-    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-import": "^2.32.0",
     "patch-package": "^8.0.0",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "tsc-alias": "^1.8.16",
-    "turbo": "^2.5.4",
-    "typescript": "^5.8.3",
-    "vite": "^6.3.5",
-    "vitest": "^3.2.2",
+    "turbo": "^2.5.8",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {
     "node": ">=22"
   },
-  "resolutions": {
-    "typescript": "5.8.3"
-  },
   "type": "module",
-  "packageManager": "npm@11.4.1",
+  "packageManager": "npm@11.6.1",
   "license": "MIT",
   "workspaces": [
     "api",
@@ -49,6 +47,6 @@
     "ui"
   ],
   "dependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.2.1"
   }
 }
