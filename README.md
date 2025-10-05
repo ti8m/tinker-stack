@@ -1,8 +1,6 @@
 # Frontend Monorepo for Rapid Prototyping
 
-This is a [npm Template](https://remix.run/docs/en/main/guides/templates) for a Frontend
-Monorepo. (Create-Remix is only used to generate the initial project structure, the project itself
-does not use Remix.)
+This is a [npm Template](https://remix.run/docs/en/main/guides/templates) for a Frontend Monorepo. 
 
 It puts emphasis on rapid prototyping and a prototype-driven development
 ([Pixar Planning](https://www.youtube.com/watch?v=gbuWJ48T0bE&t=1294s)).
@@ -50,5 +48,5 @@ The project documentation is written in [AsciiDoc](https://asciidoctor.org/) and
 To get started, run the following command:
 
 ```bash
-npx create-remix@latest --template ti8m/tinker-stack
+npx create tinker-stack
 ```
