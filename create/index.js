@@ -6,8 +6,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const templateDir = path.resolve(__dirname, '..', 'template');
+const cwd = path.dirname(path.dirname(__filename));
+const templateDir = path.join(cwd, 'template');
 
 function targetFromArgv() {
   const argv = process.argv.slice(2);
@@ -23,22 +23,23 @@ function normalizeOptions(input = {}) {
   let opts = {};
   if (typeof input === 'object' && input !== null) opts = input;
 
-  const target =
+  const targetDir =
     opts.targetDirectory ||
     opts.name || // common field name for npm init
     opts.project ||
-    targetFromArgv() ||
-    './my-app'; // default output folder name
+    targetFromArgv();
+
   return {
-    rootDirectory: templateDir, // always use the built-in template
-    targetDirectory: path.resolve(process.cwd(), target),
+    cwd,
+    templateDir: templateDir, // always use the built-in template
+    targetDir,
     debug: !!opts.debug,
     install: opts.install ?? true,
     ...opts
   };
 }
 
-export default async function main(...args) {
+async function main(...args) {
   const opts = normalizeOptions(args[0]);
 
   // validate template exists
@@ -55,3 +56,4 @@ export default async function main(...args) {
   await createMain(opts);
 }
 
+main().catch(console.error.bind(console));

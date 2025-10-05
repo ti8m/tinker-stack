@@ -4,6 +4,9 @@
   "bin": "create/index.js",
   "type": "module",
   "files": ["template", "create"],
+  "engines": {
+    "node": ">=22.3.0"
+  },
   "dependencies": {
     "execa": "^7.1.1",
     "inquirer": "^9.2.6"
