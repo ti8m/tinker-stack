@@ -92,6 +92,7 @@ export async function main({ cwd, templateDir, targetDir }) {
 	await Promise.all(fileOperationPromises);
 
 	if (!process.env.SKIP_SETUP) {
+		execSync('npm install', { cwd: targetDir, stdio: 'inherit' });
 		execSync('npm run typecheck', { cwd: targetDir, stdio: 'inherit' });
 		execSync('npm run build:data', { cwd: targetDir, stdio: 'inherit' });
 	}

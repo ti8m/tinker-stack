@@ -18,4 +18,4 @@ Vitest handles unit and integration coverage; colocate specs as `*.test.ts` or `
 Mirror the existing history by writing concise, imperative subjects (`add build verification for Github`). Group logically related changes per commit. Pull requests must include a summary, testing notes (`npm run build`, `npm run test`, etc.), linked issues when applicable, and screenshots for UI updates.
 
 ## Setup & Configuration Notes
-The scaffold copies `.env.example` to `.env` and swaps `planning-stack-template` tokens; keep those references in sync when editing template assets. Honor the `SKIP_SETUP` and `SKIP_FORMAT` flags in `create/main.js` so automated flows remain consistent. Update every consumer (e.g., `template/remix.init/gitlab-ci.yml`) when adjusting CI scaffolding.
+The scaffold copies `.env.example` to `.env` and swaps `planning-stack-template` tokens; keep those references in sync when editing template assets. Honor the `SKIP_SETUP` and `SKIP_FORMAT` flags in `create/main.js` so automated flows remain consistent. Update every consumer (e.g., `template/gitlab-ci.yml`) when adjusting CI scaffolding.
