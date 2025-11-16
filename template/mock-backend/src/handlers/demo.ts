@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, type HttpHandler } from 'msw';
 
 import type { AuthFunction } from '#/auth.js';
 import { serverDelay } from '#/utils.js';
@@ -66,7 +66,7 @@ export function getHandlers({
 				permissions,
 			});
 		}),
-	};
+	} satisfies Record<string, HttpHandler>;
 }
 
 export const demoHandlers = ({
@@ -79,7 +79,7 @@ export const demoHandlers = ({
 	indexes: DatasetIndexes;
 	auth: AuthFunction;
 	addDelay: boolean;
-}) =>
+}): HttpHandler[] =>
 	Object.values(
 		getHandlers({
 			dataset,

@@ -1,6 +1,6 @@
 import type { Dataset, JWTPayload } from '@repo/mock-data';
 import { serialize } from '@tinyhttp/cookie';
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, type HttpHandler } from 'msw';
 
 export type { JWTPayload };
 
@@ -36,7 +36,7 @@ export function getAuthHandlers(dataset: Dataset) {
 				},
 			});
 		}),
-	};
+	} satisfies Record<string, HttpHandler>;
 }
 
-export const authHandlers = (dataset: Dataset) => Object.values(getAuthHandlers(dataset));
+export const authHandlers = (dataset: Dataset): HttpHandler[] => Object.values(getAuthHandlers(dataset));
