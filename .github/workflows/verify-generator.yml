@@ -26,6 +26,7 @@ jobs:
           pwd
           CURRENT_DIR=$(pwd)
           TEMP_DIR=$(mktemp -d)
+          npm ci
           npm link
           cd $TEMP_DIR
           npx create-tinker-stack ./my-app
