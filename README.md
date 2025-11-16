@@ -48,5 +48,5 @@ The project documentation is written in [AsciiDoc](https://asciidoctor.org/) and
 To get started, run the following command:
 
 ```bash
-npx create tinker-stack
+npm create tinker-stack
 ```
