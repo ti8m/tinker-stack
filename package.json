@@ -1,6 +1,6 @@
 {
   "name": "create-tinker-stack",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "bin": "create/index.js",
   "type": "module",
   "files": [
