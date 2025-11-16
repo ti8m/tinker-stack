@@ -12,6 +12,8 @@
   },
   "scripts": {
     "release": "commit-and-tag-version",
+    "test": "npm run test:e2e",
+    "test:e2e": "vitest run --no-file-parallelism",
     "upgrade": "npx npm-check-updates --interactive"
   },
   "dependencies": {
@@ -19,6 +21,7 @@
     "inquirer": "^9.2.6"
   },
   "devDependencies": {
-    "commit-and-tag-version": "^12.6.0"
+    "commit-and-tag-version": "^12.6.0",
+    "vitest": "^4.0.9"
   }
 }

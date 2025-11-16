@@ -20,18 +20,8 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      - name: Verify generator template
-        run: |
-          echo "Current build directory: $GITHUB_WORKSPACE"
-          pwd
-          CURRENT_DIR=$(pwd)
-          TEMP_DIR=$(mktemp -d)
-          npm ci
-          npm link
-          cd $TEMP_DIR
-          npx create-tinker-stack ./my-app
-    
-          cd my-app
-          npm run typecheck
-          cd $CURRENT_DIR
-          rm -rf $TEMP_DIR
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run generator end-to-end tests
+        run: npm run test:e2e
