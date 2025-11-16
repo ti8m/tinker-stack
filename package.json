@@ -3,12 +3,22 @@
   "version": "0.2.0",
   "bin": "create/index.js",
   "type": "module",
-  "files": ["template", "create"],
+  "files": [
+    "template",
+    "create"
+  ],
   "engines": {
     "node": ">=22.3.0"
+  },
+  "scripts": {
+    "release": "commit-and-tag-version",
+    "upgrade": "npx npm-check-updates --interactive"
   },
   "dependencies": {
     "execa": "^7.1.1",
     "inquirer": "^9.2.6"
+  },
+  "devDependencies": {
+    "commit-and-tag-version": "^12.6.0"
   }
 }
