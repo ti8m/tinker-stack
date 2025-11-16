@@ -26,9 +26,12 @@ jobs:
           pwd
           CURRENT_DIR=$(pwd)
           TEMP_DIR=$(mktemp -d)
+          npm ci
+          npm link
           cd $TEMP_DIR
-          npx create-remix@latest --template $CURRENT_DIR --debug --install --init-script --no-git-init ./my-remix-app
-          cd my-remix-app
+          npx create-tinker-stack ./my-app
+    
+          cd my-app
           npm run typecheck
           cd $CURRENT_DIR
           rm -rf $TEMP_DIR
