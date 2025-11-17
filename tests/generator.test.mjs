@@ -25,16 +25,18 @@ describe('create-tinker-stack generator', () => {
     'scaffolds project and passes build checks',
     async () => {
       const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'tinker-stack-'));
-      const projectDir = path.join(tempRoot, 'demo-app');
+      const appFolder = 'demo-app';
+      const projectDir = path.join(tempRoot, appFolder);
 
       try {
-        await runCommand('node', [CLI_ENTRY, projectDir], {
+        await runCommand('node', [CLI_ENTRY, appFolder], {
           env: {
             ...process.env,
             CI: '1',
             SKIP_SETUP: '1',
             SKIP_FORMAT: '1'
-          }
+          },
+          cwd: tempRoot
         });
 
         const packageJson = JSON.parse(await readFile(path.join(projectDir, 'package.json'), 'utf8'));
@@ -54,5 +56,31 @@ describe('create-tinker-stack generator', () => {
       }
     },
     10 * 60 * 1000
+  );
+
+  test(
+    'scaffolds into the current working directory when no target is provided',
+    async () => {
+      const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'tinker-stack-'));
+      const expectedDir = path.join(tempRoot, 'demo-title');
+
+      try {
+        await runCommand('node', [CLI_ENTRY], {
+          env: {
+            ...process.env,
+            CI: '1',
+            SKIP_SETUP: '1',
+            SKIP_FORMAT: '1'
+          },
+          cwd: tempRoot
+        });
+
+        const packageJson = JSON.parse(await readFile(path.join(expectedDir, 'package.json'), 'utf8'));
+        expect(packageJson.name).toBe('demo-title');
+      } finally {
+        await rm(tempRoot, { recursive: true, force: true });
+      }
+    },
+    2 * 60 * 1000
   );
 });
