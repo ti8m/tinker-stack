@@ -1,0 +1,47 @@
+name: Manual release — commit-and-tag-version
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Run commit-and-tag-version and push to main
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run commit-and-tag-version and push commit + tags to main
+        env:
+          # GITHUB_TOKEN is available if no push_token was provided; if a PAT was provided we already rewrote the remote.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Prefer npx so this works whether the package is in the repo or not.
+          # If your repo already contains commit-and-tag-version as a dependency, this will run the local binary.
+          echo "Running commit-and-tag-version..."
+          npx commit-and-tag-version
+
+          # After the tool creates the new version commit and tag locally, push commit and tags to main.
+          # Ensure we push HEAD to main in case the workflow is running from a different ref.
+          echo "Pushing commit and tags to main..."
+          git push origin HEAD:main --follow-tags
