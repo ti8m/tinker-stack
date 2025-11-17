@@ -6,8 +6,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __filename = fileURLToPath(import.meta.url);
-const cwd = path.dirname(path.dirname(__filename));
-const templateDir = path.join(cwd, 'template');
+const packageRoot = path.dirname(path.dirname(__filename));
+const templateDir = path.join(packageRoot, 'template');
 
 function targetFromArgv() {
   const argv = process.argv.slice(2);
@@ -29,13 +29,23 @@ function normalizeOptions(input = {}) {
     opts.project ||
     targetFromArgv();
 
+  const resolvedCwd =
+    typeof opts.cwd === 'string' && opts.cwd.length > 0
+      ? path.resolve(process.cwd(), opts.cwd)
+      : process.cwd();
+
+  const resolvedTargetDir =
+    typeof targetDir === 'string' && targetDir.length > 0
+      ? path.resolve(resolvedCwd, targetDir)
+      : undefined;
+
   return {
-    cwd,
-    templateDir: templateDir, // always use the built-in template
-    targetDir,
+    ...opts,
+    targetDir: resolvedTargetDir,
     debug: !!opts.debug,
     install: opts.install ?? true,
-    ...opts
+    cwd: resolvedCwd,
+    templateDir // always use the built-in template
   };
 }
 
