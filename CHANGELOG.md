@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.3](https://github.com/ti8m/tinker-stack/compare/v0.2.2...v0.2.3) (2025-11-17)
+
+
+### Bug Fixes
+
+* Fix how cwd is resolved ([cfec53b](https://github.com/ti8m/tinker-stack/commit/cfec53b330a6bd10ce7de93e516067b4a1b611a3))
+
 ## [0.2.2](https://github.com/ti8m/tinker-stack/compare/v0.2.1...v0.2.2) (2025-11-17)
 
 ## 0.2.1 (2025-11-16)
