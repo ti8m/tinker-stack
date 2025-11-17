@@ -31,6 +31,7 @@ dist
 /public/build
 tsconfig.tsbuildinfo
 data-mocks/
+*.tgz
 
 # Debug
 npm-debug.log*
