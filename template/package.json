@@ -15,27 +15,29 @@
     "clean": "rimraf .turbo && turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
+  "dependencies": {
+    "concurrently": "latest"
+  },
   "devDependencies": {
     "@repo/api": "*",
-    "eslint-plugin-import": "^2.31.0",
-    "patch-package": "^8.0.0",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
-    "tsc-alias": "^1.8.16",
-    "turbo": "^2.5.4",
-    "typescript": "^5.8.3",
-    "vite": "^6.4.1",
-    "vitest": "^3.2.2",
-    "vite-tsconfig-paths": "^5.1.4"
+    "eslint-plugin-import": "latest",
+    "patch-package": "latest",
+    "prettier": "latest",
+    "prettier-plugin-organize-imports": "latest",
+    "tsc-alias": "latest",
+    "turbo": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "vitest": "latest",
+    "vite-tsconfig-paths": "latest"
   },
   "engines": {
     "node": ">=22"
   },
   "resolutions": {
-    "typescript": "5.8.3"
+    "typescript": "latest"
   },
   "type": "module",
-  "packageManager": "npm@11.4.1",
   "license": "MIT",
   "workspaces": [
     "api",
@@ -48,7 +50,5 @@
     "prototype",
     "ui"
   ],
-  "dependencies": {
-    "concurrently": "^9.1.2"
-  }
+  "packageManager": "npm@11.4.1"
 }

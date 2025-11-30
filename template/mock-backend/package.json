@@ -14,21 +14,21 @@
   },
   "dependencies": {
     "@repo/api": "*",
-    "@repo/mock-data": "2024.0.0",
-    "@tinyhttp/cookie": "^2.1.1",
-    "memoize": "^10.0.0",
-    "msw": "^2.4.9",
-    "query-string": "^9.1.1"
+    "@repo/mock-data": "*",
+    "@tinyhttp/cookie": "latest",
+    "memoize": "latest",
+    "msw": "latest",
+    "query-string": "latest"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/node": "^22.7.4",
-    "openapi-typescript": "^7.4.1",
-    "prettier": "^3.3.3"
+    "@types/node": "latest",
+    "openapi-typescript": "latest",
+    "prettier": "latest"
   },
   "peerDependencies": {
-    "msw": "^2.4.9"
+    "msw": "latest"
   },
   "engines": {
     "node": ">=22.0.0"
