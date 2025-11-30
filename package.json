@@ -10,6 +10,22 @@
   "engines": {
     "node": ">=22.3.0"
   },
+  "keywords": [
+    "tinker-stack",
+    "react",
+    "monorepo",
+    "starter",
+    "template",
+    "typescript",
+    "turborepo",
+    "prototype",
+    "prototyping",
+    "msw",
+    "faker",
+    "frontend",
+    "scaffold",
+    "create-tinker-stack"
+  ],
   "scripts": {
     "release": "commit-and-tag-version",
     "test": "npm run test:e2e",

@@ -3,7 +3,7 @@
 Refer to the README.md for information about this repository.
 
 ## Project Structure & Module Organization
-`create/` contains the Node-based scaffold (`index.js` normalizes CLI options, `main.js` mutates the template). `template/` ships the starter monorepo with workspaces such as `api/` for backend endpoints, `mock-backend/` and `mock-data/` for fixtures, `prototype/` for the Remix reference app, `ui/` for shared components, and `docs/` for the Antora documentation site. Shared lint and TS configs live in `template/config/`, and bootstrap assets for generated apps sit under `template/remix.init/`.
+`create/` contains the Node-based scaffold (`index.js` normalizes CLI options, `main.js` mutates the template). `template/` ships the starter monorepo with workspaces such as `api/` for backend endpoints, `mock-backend/` and `mock-data/` for fixtures, `prototype/` for the prototype app, `ui/` for shared components, and `docs/` for the Antora documentation site. Shared lint and TS configs live in `template/config/`, and bootstrap assets for generated apps sit under `template`.
 
 ## Build, Test & Development Commands
 Use Node 22+. Run `npm install` at the repo root before touching the CLI. Template work happens inside `template/`: `npm install` for dependencies, `npm run dev` to launch Turbo-powered development, `npm run build` for a production check, `npm run typecheck` for repository-wide TypeScript validation, `npm run test` to execute Vitest suites, and `npm run format` to apply Prettier across Markdown and TypeScript files.

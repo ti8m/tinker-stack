@@ -1,6 +1,6 @@
 # Frontend Monorepo for Rapid Prototyping
 
-This is a [npm Template](https://remix.run/docs/en/main/guides/templates) for a Frontend Monorepo. 
+This is a npm Template for a Frontend Monorepo. 
 
 It puts emphasis on rapid prototyping and a prototype-driven development
 ([Pixar Planning](https://www.youtube.com/watch?v=gbuWJ48T0bE&t=1294s)).

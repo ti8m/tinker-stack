@@ -15,7 +15,7 @@ Die Daten werden mit dem Mock-Daten-Generator erzeugt.
 
 ## Entwicklung
 
-Sie können Ihre SPA-App wie eine normale Remix-App entwickeln, mit:
+Der Prototyp mit dem Mock-Server kann mit folgendem Befehl gestartet werden:
 
 ```shellscript
 npm run dev
