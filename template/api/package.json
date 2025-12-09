@@ -17,9 +17,6 @@
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*"
   },
-  "peerDependencies": {
-    "msw": "^2.4.9"
-  },
   "engines": {
     "node": ">=22.0.0"
   },
@@ -42,9 +39,5 @@
     "*.{json,md}": [
       "prettier --write"
     ]
-  },
-  "dependencies": {
-    "memoize": "^10.0.0",
-    "msw": "^2.4.9"
   }
 }

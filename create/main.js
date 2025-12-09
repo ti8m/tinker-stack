@@ -7,30 +7,30 @@ import path from 'node:path';
 const getRandomString = length => crypto.randomBytes(length).toString('hex');
 
 export async function main({ cwd, templateDir, targetDir }) {
-  const APP_TITLE = await getTitle();
+	const APP_TITLE = await getTitle();
 
-  const APP_NAME = (APP_TITLE)
-    // get rid of anything that's not allowed in an app name
-    .replace(/[^a-zA-Z0-9-_]/g, '-')
-    .toLowerCase();
+	const APP_NAME = (APP_TITLE)
+		// get rid of anything that's not allowed in an app name
+		.replace(/[^a-zA-Z0-9-_]/g, '-')
+		.toLowerCase();
 
-  // Use targetDir if it is set, otherwise create it from app-name
-  targetDir = targetDir ? targetDir : path.join(cwd, APP_NAME);
+	// Use targetDir if it is set, otherwise create it from app-name
+	targetDir = targetDir ? targetDir : path.join(cwd, APP_NAME);
 
-  console.log({ cwd, templateDir, targetDir, APP_NAME, APP_TITLE });
+	console.log({ cwd, templateDir, targetDir, APP_NAME, APP_TITLE });
 
-  await fs.cp(templateDir, targetDir, { recursive: true, force: false, errorOnExist: true }, (err) => {
-    console.warn(err);
-  });
+	await fs.cp(templateDir, targetDir, { recursive: true, force: false, errorOnExist: true }, (err) => {
+		console.warn(err);
+	});
 
-  const EXAMPLE_ENV_PATH = path.join(targetDir, '.env.example');
+	const EXAMPLE_ENV_PATH = path.join(targetDir, '.env.example');
 	const ENV_PATH = path.join(targetDir, '.env');
 	const PKG_PATH = path.join(targetDir, 'package.json');
 
 	const appNameRegex = /planning-stack-template/g;
 	const appTitleRegex = /PLANNING STACK TEMPLATE/g;
 
-  const [env, packageJsonString] = await Promise.all([
+	const [env, packageJsonString] = await Promise.all([
 		fs.readFile(EXAMPLE_ENV_PATH, 'utf-8'),
 		fs.readFile(PKG_PATH, 'utf-8'),
 	]);
@@ -93,6 +93,7 @@ export async function main({ cwd, templateDir, targetDir }) {
 
 	if (!process.env.SKIP_SETUP) {
 		execSync('npm install', { cwd: targetDir, stdio: 'inherit' });
+		await pinDependencies(targetDir);
 		execSync('npm run typecheck', { cwd: targetDir, stdio: 'inherit' });
 		execSync('npm run build:data', { cwd: targetDir, stdio: 'inherit' });
 	}
@@ -116,6 +117,89 @@ What's next?
 - Iterate
 		`.trim(),
 	);
+}
+
+async function pinDependencies(targetDir) {
+	const pinPackage = async (dir, isRoot = false) => {
+		const pkgPath = path.join(dir, 'package.json');
+		let pkg;
+		try {
+			pkg = JSON.parse(await fs.readFile(pkgPath, 'utf-8'));
+		} catch (e) {
+			return null;
+		}
+
+		let installedDeps = {};
+		try {
+			const output = execSync('npm list --json --depth=0', {
+				cwd: dir,
+				encoding: 'utf-8',
+				stdio: ['ignore', 'pipe', 'ignore'],
+			});
+			const parsed = JSON.parse(output);
+			installedDeps = parsed.dependencies || {};
+			// In workspaces, npm list often returns the root dependencies with the workspace nested
+			if (pkg.name && installedDeps[pkg.name] && installedDeps[pkg.name].dependencies) {
+				installedDeps = installedDeps[pkg.name].dependencies;
+			}
+		} catch (e) {
+			if (e.stdout) {
+				const parsed = JSON.parse(e.stdout.toString());
+				installedDeps = parsed.dependencies || {};
+				if (pkg.name && installedDeps[pkg.name] && installedDeps[pkg.name].dependencies) {
+					installedDeps = installedDeps[pkg.name].dependencies;
+				}
+			}
+		}
+
+		const updateDeps = (depsObj) => {
+			if (!depsObj) return;
+			for (const dep of Object.keys(depsObj)) {
+				if (depsObj[dep] === '*') continue;
+				if (installedDeps[dep] && installedDeps[dep].version) {
+					depsObj[dep] = installedDeps[dep].version;
+				}
+			}
+		};
+
+		updateDeps(pkg.dependencies);
+		updateDeps(pkg.devDependencies);
+
+		if (isRoot && pkg.resolutions) {
+			for (const dep of Object.keys(pkg.resolutions)) {
+				if (pkg.resolutions[dep] === '*' || !installedDeps[dep]) continue;
+				if (installedDeps[dep].version) {
+					pkg.resolutions[dep] = installedDeps[dep].version;
+				}
+			}
+		}
+
+		await fs.writeFile(pkgPath, JSON.stringify(pkg, null, 2));
+		return pkg;
+	};
+
+	const rootPkg = await pinPackage(targetDir, true);
+
+	if (rootPkg && Array.isArray(rootPkg.workspaces)) {
+		for (const workspace of rootPkg.workspaces) {
+			// Handle basic glob patterns (ends with /*)
+			if (workspace.endsWith('/*')) {
+				const parentDir = path.join(targetDir, workspace.slice(0, -2));
+				try {
+					const subdirs = await fs.readdir(parentDir, { withFileTypes: true });
+					for (const dirent of subdirs) {
+						if (dirent.isDirectory()) {
+							await pinPackage(path.join(parentDir, dirent.name));
+						}
+					}
+				} catch (e) {
+					// Ignore if directory doesn't exist
+				}
+			} else {
+				await pinPackage(path.join(targetDir, workspace));
+			}
+		}
+	}
 }
 
 async function getTitle() {
