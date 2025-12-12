@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@repo/api": "*",
-    "@repo/mock-data": "2024.0.0",
+    "@repo/mock-data": "*",
     "@tinyhttp/cookie": "^2.1.1",
     "memoize": "^10.0.0",
     "msw": "^2.4.9",
