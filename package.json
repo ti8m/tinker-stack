@@ -27,17 +27,20 @@
     "create-tinker-stack"
   ],
   "scripts": {
+    "prerelease": "find template -name package-lock.json -delete && find template -name tsconfig.tsbuildinfo -delete && find template -name .turbo -type d -prune -exec rm -rf {} +",
     "release": "commit-and-tag-version",
     "test": "npm run test:e2e",
     "test:e2e": "vitest run --no-file-parallelism",
-    "upgrade": "npx npm-check-updates --interactive"
+    "upgrade:template": "npx npm-check-updates --interactive --format group -c 2 -w --cwd template",
+    "postupgrade:template": "find template -name package-lock.json -delete && find template -name node_modules -type d -prune -exec rm -rf {} +",
+    "upgrade:root": "npx npm-check-updates --interactive --format group -c 2"
   },
   "dependencies": {
-    "execa": "^7.1.1",
-    "inquirer": "^9.2.6"
+    "execa": "^9.6.1",
+    "inquirer": "^13.0.2"
   },
   "devDependencies": {
-    "commit-and-tag-version": "^12.6.0",
-    "vitest": "^4.0.9"
+    "commit-and-tag-version": "^12.6.1",
+    "vitest": "^4.0.15"
   }
 }
