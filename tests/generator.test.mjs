@@ -55,7 +55,7 @@ describe('create-tinker-stack generator', () => {
         await rm(tempRoot, { recursive: true, force: true });
       }
     },
-    10 * 60 * 1000
+    5 * 60 * 1000
   );
 
   test(
@@ -81,6 +81,6 @@ describe('create-tinker-stack generator', () => {
         await rm(tempRoot, { recursive: true, force: true });
       }
     },
-    2 * 60 * 1000
+    5 * 60 * 1000
   );
 });

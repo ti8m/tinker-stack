@@ -8,24 +8,23 @@
     "build:prototype": "turbo build --filter=@repo/prototype",
     "dev": "turbo run dev",
     "docs": "turbo run docs",
-    "postinstall": "patch-package",
     "lint": "turbo run lint -- --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
+    "upgrade": "npx npm-check-updates --interactive --format group -c 2",
     "clean": "rimraf .turbo && turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@repo/api": "*",
-    "eslint-plugin-import": "^2.31.0",
-    "patch-package": "^8.0.0",
-    "prettier": "^3.5.3",
-    "prettier-plugin-organize-imports": "^4.1.0",
+    "eslint-plugin-import": "^2.32.0",
+    "prettier": "^3.7.4",
+    "prettier-plugin-organize-imports": "^4.3.0",
     "tsc-alias": "^1.8.16",
-    "turbo": "^2.5.4",
-    "typescript": "^5.8.3",
-    "vite": "^6.4.1",
-    "vitest": "^3.2.2",
+    "turbo": "^2.6.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7",
+    "vitest": "^4.0.15",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "engines": {
@@ -35,7 +34,7 @@
     "typescript": "5.8.3"
   },
   "type": "module",
-  "packageManager": "npm@11.4.1",
+  "packageManager": "npm@11.7.0",
   "license": "MIT",
   "workspaces": [
     "api",
@@ -49,6 +48,6 @@
     "ui"
   ],
   "dependencies": {
-    "concurrently": "^9.1.2"
+    "concurrently": "^9.2.1"
   }
 }
