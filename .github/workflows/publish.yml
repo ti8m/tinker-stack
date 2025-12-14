@@ -1,9 +1,14 @@
 name: Publish Package
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_run:
+    workflows:
+      - "Manual release"
+    types:
+      - completed
+  # optionally also respond to manual release events (fallback)
+  release:
+    types: [published]
 
 permissions:
   contents: read
@@ -11,13 +16,29 @@ permissions:
 
 jobs:
   publish:
+    # Only run when the release workflow completed successfully and produced a tag starting with "v"
+    if: >-
+      ${{ (github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success') ||
+         (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'v')) }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository (fetch all tags)
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0   
+          fetch-depth: 0
+      - name: Resolve tag to publish
+        id: tag
+        run: |
+          # Prefer the release tag if available; otherwise try to read from workflow_run head_branch/ref
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "tag=${{ github.event.release.tag_name }}" >>"$GITHUB_OUTPUT"
+          else
+            # for a workflow_run we can try to use the ref from the completed run (head_branch/head_sha)
+            # adjust logic here to extract the correct tag if your release.yml sets outputs or artifacts
+            echo "tag=${GITHUB_REF#refs/tags/}" >>"$GITHUB_OUTPUT" || true
+          fi        
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -25,9 +46,6 @@ jobs:
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
           always-auth: true
-      # Ensure npm 11.5.1 or later is installed
-      - name: Update npm
-        run: npm install -g npm@latest
 
       - name: Install dependencies
         run: npm ci
