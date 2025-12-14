@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.4](https://github.com/ti8m/tinker-stack/compare/v0.2.3...v0.2.4) (2025-12-14)
+
+
+### Bug Fixes
+
+* Remove wrong dependencies ([#22](https://github.com/ti8m/tinker-stack/issues/22)) ([76204f5](https://github.com/ti8m/tinker-stack/commit/76204f5df043f038351208270ead29d0b2da01f6))
+
 ## [0.2.3](https://github.com/ti8m/tinker-stack/compare/v0.2.2...v0.2.3) (2025-11-17)
 
 
