@@ -5,7 +5,6 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildDataset, datasetConfigs } from '../dist/src/index.js';
-import packageJson from '../package.json' with { type: 'json' };
 
 const __filename = fileURLToPath(import.meta.url);
 const defaultOutputFile = path.join(
@@ -18,7 +17,6 @@ const hintOutputFile = path.join(path.dirname(__filename), '../data-mocks/hints.
 program
 	.name('planning-stack-template-mocks-generator')
 	.description('CLI to generate mock data for the PLANNING STACK TEMPLATE Web Project.')
-	.version(packageJson.version)
 	.option(
 		'-o, --output [./path/to/save/file.json]',
 		'Path where the generated data should be saved. The <size> placeholder will be replaced by the size of the dataset.',

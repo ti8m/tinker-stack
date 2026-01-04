@@ -42,12 +42,12 @@
       "import": "./dist/src/handlers/index.js"
     },
     "./medium": {
-      "types": "./dist/src/medium/index.d.ts",
-      "import": "./dist/src/medium/index.js"
+      "types": "./dist/medium/index.d.ts",
+      "import": "./dist/medium/index.js"
     },
     "./full": {
-      "types": "./dist/src/full/index.d.ts",
-      "import": "./dist/src/full/index.js"
+      "types": "./dist/full/index.d.ts",
+      "import": "./dist/full/index.js"
     }
   },
   "lint-staged": {

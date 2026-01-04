@@ -43,7 +43,7 @@ export async function main({ cwd, templateDir, targetDir }) {
 		path.join(targetDir, 'docs', 'modules/ROOT/pages/architecture.adoc'),
 		path.join(targetDir, 'docs', 'modules/ROOT/pages/documentation.adoc'),
 		path.join(targetDir, 'docs', 'modules/ROOT/pages/getting-started.adoc'),
-		path.join(targetDir, 'mock-data', 'cli', 'generate-data.mjs'),
+		path.join(targetDir, 'mocks', 'cli', 'generate-data.mjs'),
 		path.join(targetDir, 'prototype', 'README.md'),
 		path.join(targetDir, 'ui', 'README.md'),
 	]);
@@ -62,7 +62,7 @@ export async function main({ cwd, templateDir, targetDir }) {
 		path.join(targetDir, 'docs', 'package.json'),
 		path.join(targetDir, 'prototype', 'app', 'root.tsx'),
 		path.join(targetDir, 'prototype', 'app', 'routes', '_index.tsx'),
-		path.join(targetDir, 'mock-data', 'cli', 'generate-data.mjs'),
+		path.join(targetDir, 'mocks', 'cli', 'generate-data.mjs'),
 	]);
 
 	// Replace all instances of the app title
