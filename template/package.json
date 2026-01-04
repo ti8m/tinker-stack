@@ -4,7 +4,7 @@
   "scripts": {
     "build": "turbo build",
     "build:data": "turbo run build:data",
-    "build:msw": "turbo build --filter=@repo/mock-backend",
+    "build:msw": "turbo build --filter=@repo/msw",
     "build:prototype": "turbo build --filter=@repo/prototype",
     "dev": "turbo run dev",
     "docs": "turbo run docs",
@@ -42,8 +42,8 @@
     "config/typescript",
     "docs",
     "frontend",
-    "mock-data",
-    "mock-backend",
+    "mocks",
+    "msw",
     "prototype",
     "ui"
   ],

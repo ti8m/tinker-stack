@@ -80,7 +80,7 @@ Siehe auch xref:monorepo.adoc#aufbau[Monorepo].
 
 === Mock Backend
 
-[plantuml,mock-backend,svg]
+[plantuml,msw,svg]
 ----
 @startuml
 actor Browser

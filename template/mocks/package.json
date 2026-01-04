@@ -1,6 +1,5 @@
 {
-  "name": "@repo/mock-data",
-  "version": "2024.0.0",
+  "name": "@repo/mocks",
   "sideEffects": false,
   "type": "module",
   "bin": {

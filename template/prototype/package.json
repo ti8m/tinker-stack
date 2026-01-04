@@ -17,7 +17,7 @@
     "@radix-ui/react-slot": "^1.2.4",
     "@react-router/node": "^7.10.1",
     "@repo/api": "*",
-    "@repo/mock-backend": "*",
+    "@repo/msw": "*",
     "@repo/ui": "*",
     "@tinyhttp/cookie": "^2.1.1",
     "class-variance-authority": "^0.7.1",

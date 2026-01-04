@@ -11,8 +11,8 @@ export default defineConfig({
 		exclude:
 			process.env.NODE_ENV === 'development'
 				? [
-						'@repo/mock-backend/medium',
-						'@repo/mock-backend/handlers',
+						'@repo/msw/medium',
+						'@repo/msw/handlers',
 						'@repo/api/stammdaten/enums',
 						'@repo/ui',
 					]

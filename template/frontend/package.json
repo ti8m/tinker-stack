@@ -6,7 +6,7 @@
   "scripts": {},
   "dependencies": {
     "@repo/api": "*",
-    "@repo/mock-backend": "*",
+    "@repo/msw": "*",
     "@repo/ui": "*"
   }
 }

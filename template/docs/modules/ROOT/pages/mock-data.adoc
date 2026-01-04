@@ -3,7 +3,7 @@
 
 == Überblick
 
-Das `@repo/mock-data` Package generiert synthetische Testdaten für die Entwicklung. Die Daten sind:
+Das `@repo/mocks` Package generiert synthetische Testdaten für die Entwicklung. Die Daten sind:
 
 * Realistisch und konsistent
 * Typsicher durch TypeScript
@@ -25,7 +25,7 @@ Die Daten werden im Entwicklungs-Modus On-The-Fly beim Reload der Applikation ge
 
 === Verwendung
 
-Siehe `@repo/mock-data/README.md`
+Siehe `@repo/mocks/README.md`
 
 Der Ordner enthält Generator-Klassen für die einzelnen Entitäten.
 
@@ -34,7 +34,7 @@ In der Datei `dataset.ts` werden die einzelnen Generatoren zu einem Datensatz zu
 == Daten erweitern
 
 1. Domain-Types in `@repo/api` definieren und falls nötig im lokalen Repository anpassen.
-2. Generator in `@repo/mock-data/src/generators` erstellen
+2. Generator in `@repo/mocks/src/generators` erstellen
 3. In `dataset.ts` integrieren
 4. Build mit `npm run build:data`
 

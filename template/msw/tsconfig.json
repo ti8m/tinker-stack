@@ -1,6 +1,6 @@
 {
   "extends": "@repo/typescript-config/node-library.json",
-  "include": ["./src/**/*.ts"],
+  "include": ["./src/**/*.ts", "./full/*.ts", "./medium/*.ts"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {

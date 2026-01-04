@@ -8,16 +8,16 @@
       "outputs": ["dist/**", "build/client/**"],
       "env": ["VITE_BUILD_NUMBER", "VITE_VERSION"]
     },
-    "@repo/mock-data#generate:medium": {
-      "dependsOn": ["^@repo/mock-data#build"],
-      "outputs": ["data-mocks/mock-data.medium.json", "data-mocks/hints.medium.json"]
+    "@repo/mocks#generate:medium": {
+      "dependsOn": ["^@repo/mocks#build"],
+      "outputs": ["data-mocks/mocks.medium.json", "data-mocks/hints.medium.json"]
     },
-    "@repo/mock-data#generate:small": {
-      "dependsOn": ["^@repo/mock-data#build"],
-      "outputs": ["data-mocks/mock-data.small.json", "data-mocks/hints.small.json"]
+    "@repo/mocks#generate:small": {
+      "dependsOn": ["^@repo/mocks#build"],
+      "outputs": ["data-mocks/mocks.small.json", "data-mocks/hints.small.json"]
     },
     "build:data": {
-      "dependsOn": ["^@repo/mock-data#generate:small", "^@repo/mock-data#generate:medium"]
+      "dependsOn": ["^@repo/mocks#generate:small", "^@repo/mocks#generate:medium"]
     },
     "lint": {},
     "test": {},
@@ -43,7 +43,7 @@
     },
     "@repo/prototype#build": {
       "inputs": ["public/**", "react-router.config.ts", "vite.config.ts", "taiwind.config.js"],
-      "dependsOn": ["^@repo/mock-backend#build"],
+      "dependsOn": ["^@repo/msw#build"],
       "outputs": ["build/client/**"],
       "env": ["VITE_BUILD_NUMBER", "VITE_VERSION"]
     },

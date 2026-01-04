@@ -14,7 +14,7 @@ Dieses Monorepo enthält die folgenden Pakete/Apps:
 - `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
 - `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
 - `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
-- `@repo/mock-data`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
+- `@repo/mocks`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
 - `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
 - `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen `FAS` und `prototype`
   gemeinsam genutzt wird
