@@ -11,8 +11,8 @@ package "PLANNING STACK TEMPLATE Frontend Monorepo" {
   [frontend]<<app>> as frontend
   [api]<<package>> as api
   [docs]<<app>> as docs
-  [mock-data]<<package>> as mockData
-  [mock-backend]<<package>> as mockApi
+  [mocks]<<package>> as mockData
+  [msw]<<package>> as mockApi
   [ui]<<package>> as ui
   [config/eslint]<<package>> as eslintConfig
   [config/typescript]<<package>> as typescriptConfig

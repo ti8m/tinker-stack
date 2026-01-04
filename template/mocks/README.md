@@ -7,7 +7,7 @@ NOTE: This repo builds only snapshot releases. Make sure you always install the 
 the package using the 'next' tag.
 
 ```bash
-npm install @repo/mock-data@next
+npm install @repo/mocks@next
 ```
 
 Also make sure Vite does not cache the module.
@@ -17,7 +17,7 @@ Also make sure Vite does not cache the module.
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
-    exclude: ['@repo/mock-data'],
+    exclude: ['@repo/mocks'],
   },
 });
 ```
@@ -25,7 +25,7 @@ export default defineConfig({
 A full dataset export for medium and small size are exported separately and can be imported into
 projects.
 
-    import { medium } from '@repo/mock-data/medium';
+    import { medium } from '@repo/mocks/medium';
 
 The Repository also exports msw 2 handlers for the mock data. The handlers can read the user data
 from the request and return the correct data for the user. msw is a peer dependency of this package.
@@ -33,20 +33,20 @@ from the request and return the correct data for the user. msw is a peer depende
 ```typescript
 // handlers.ts
 
-import { stammdatenHandlers, auth } from '@repo/mock-data/handlers';
-import { medium } from '@repo/mock-data/medium';
+import { stammdatenHandlers, auth } from '@repo/mocks/handlers';
+import { medium } from '@repo/mocks/medium';
 
 // Create handlers for the medium dataset and the provided auth function
 export const handlers = [...stammdatenHandlers(medium, auth)];
 ```
 
 The dataset is also built during CI and can be downloaded from the
-[CI Pipelines page](https://gitlab.ti8m.ch/planning-stack-template/mock-data/-/pipelines).
+[CI Pipelines page](https://gitlab.ti8m.ch/planning-stack-template/mocks/-/pipelines).
 
 Download the latest Artifact:
-[JSON](https://gitlab.ti8m.ch/planning-stack-template/mock-data/-/jobs/artifacts/main/download?job=publish)
+[JSON](https://gitlab.ti8m.ch/planning-stack-template/mocks/-/jobs/artifacts/main/download?job=publish)
 /
-[JavaScript](https://gitlab.ti8m.ch/planning-stack-template/mock-data/-/jobs/artifacts/main/download?job=build).
+[JavaScript](https://gitlab.ti8m.ch/planning-stack-template/mocks/-/jobs/artifacts/main/download?job=build).
 
 ## Usage
 

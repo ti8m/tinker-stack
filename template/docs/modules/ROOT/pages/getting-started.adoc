@@ -68,7 +68,7 @@ Die Anwendung ist dann unter http://localhost:5173 erreichbar.
 │   ├── typescript/  # Typescript Konfigurationen
 ├── docs/            # Dokumentation
 ├── frontend/        # Produktives Frontend (noch nicht eingerichtet)
-├── mock-data/       # Testdaten Generator
+├── mocks/       # Testdaten Generator
 ├── mock-api/        # Mock Backend
 ├── prototype/       # Klickbarer UX-Prototyp
 └── ui/              # Design-System Komponenten
@@ -102,7 +102,7 @@ Für WebStorm müssen folgende Plugins installiert werden:
 1. Feature-Branch erstellen
 2. Route in `prototype/app/routes` anlegen
 3. UI mit shadcn/ui Komponenten aufbauen
-4. Mock-Daten in `mock-data` erweitern falls nötig
+4. Mock-Daten in `mocks` erweitern falls nötig
 5. Feature testen und iterieren
 6. Pull Request erstellen
 

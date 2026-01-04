@@ -3,9 +3,9 @@
 This document captures the conventions for adding and evolving the MSW handlers in this repo. Follow these guidelines to keep mocks predictable, type-safe, and realistic.
 
 Related docs
-- `../mock-data/AGENTS.md` — mock dataset structure, generators and presets.
+- `../mocks/AGENTS.md` — mock dataset structure, generators and presets.
 - `../AGENTS.md` — project overview and how mocks integrate in dev/tests.
-- `../mock-data/data-mocks/mock-data.small.json` — A small and representative example of the dataset that is passed to the generate functions.
+- `../mocks/data-mocks/mocks.small.json` — A small and representative example of the dataset that is passed to the generate functions.
 
 ## Core Principles
 
@@ -22,11 +22,11 @@ The code for the api layer that is consuming the mock API is defined in src/api.
 ## Imports You’ll Typically Need
 
 - Dataset and types
-  - `import type { Dataset } from '@/mock-data/dataset'`
+  - `import type { Dataset } from '@/mocks/dataset'`
   - Domain types from `src/types/*
 - Helpers
-  - `import { serverDelay } from '@/mock-backend/utils'`
-  - `import type { AuthFunction } from '@/mock-backend/utils'`
+  - `import { serverDelay } from '@/msw/utils'`
+  - `import type { AuthFunction } from '@/msw/utils'`
 
 ## Handler Shape and Exports
 

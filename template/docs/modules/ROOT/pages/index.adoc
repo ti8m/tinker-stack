@@ -29,10 +29,10 @@ Das Projekt ist als Monorepo mit folgenden Hauptmodulen aufgebaut:
 |@repo/frontend
 |Frontend-Anwendung
 
-|@repo/mock-backend
+|@repo/msw
 |Mock-Backend mit MSW
 
-|@repo/mock-data
+|@repo/mocks
 |Synthetische Testdaten-Generator
 
 |@repo/prototype

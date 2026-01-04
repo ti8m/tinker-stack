@@ -2,7 +2,7 @@ import { http, HttpResponse, type HttpHandler } from 'msw';
 
 import type { AuthFunction } from '#/auth.js';
 import { serverDelay } from '#/utils.js';
-import type { Dataset, DatasetIndexes } from '@repo/mock-data';
+import type { Dataset, DatasetIndexes } from '@repo/mocks';
 
 /**
  * The getHandlers function allows to inject the dependencies into the handlers

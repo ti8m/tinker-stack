@@ -10,13 +10,13 @@ import packageJson from '../package.json' with { type: 'json' };
 const __filename = fileURLToPath(import.meta.url);
 const defaultOutputFile = path.join(
 	path.dirname(__filename),
-	'../data-mocks/mock-data.<size>.json',
+	'../data-mocks/mocks.<size>.json',
 );
 
 const hintOutputFile = path.join(path.dirname(__filename), '../data-mocks/hints.<size>.json');
 
 program
-	.name('planning-stack-template-mock-data-generator')
+	.name('planning-stack-template-mocks-generator')
 	.description('CLI to generate mock data for the PLANNING STACK TEMPLATE Web Project.')
 	.version(packageJson.version)
 	.option(

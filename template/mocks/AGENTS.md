@@ -1,9 +1,9 @@
 # Mocks – Agent Guide
 
-This guide explains how the mock dataset under `mock-data/` is structured, how to extend it for new entities/fields, and how to keep it deterministic and aligned with the real API. These mocks power both MSW handlers (dev and tests) and the optional JSON snapshot CLI.
+This guide explains how the mock dataset under `mocks/` is structured, how to extend it for new entities/fields, and how to keep it deterministic and aligned with the real API. These mocks power both MSW handlers (dev and tests) and the optional JSON snapshot CLI.
 
 Related docs
-- `../mock-backend/AGENTS.md` — MSW handler conventions and RBAC patterns.
+- `../msw/AGENTS.md` — MSW handler conventions and RBAC patterns.
 - `../AGENTS.md` — project overview and how mocks are used.
 - `./README.md` — ERD and API Models; authoritative schema reference for mocks.
 
@@ -30,11 +30,11 @@ See the root AGENTS.md for the role of mocks in local dev and tests. This docume
 ## Quick Start
 
 - Build a dataset in code (used by MSW):
-  - `import { buildDataset, datasetConfigs } from '@/mock-data'` then `const { data } = buildDataset(datasetConfigs.medium)`.
+  - `import { buildDataset, datasetConfigs } from '@/mocks'` then `const { data } = buildDataset(datasetConfigs.medium)`.
 - Run dev server with MSW-based mocks: `npm run dev:mocks`.
 - Generate a JSON snapshot (manual inspection only):
   - `npm run generate:small`
-  - or `npx tsx mock-data/cli/generate-data.ts -d medium -s 42 -o mock-data/data-mocks/mock-data.<size>.json`
+  - or `npx tsx mocks/cli/generate-data.ts -d medium -s 42 -o mocks/data-mocks/mocks.<size>.json`
 
 ## Determinism and Seeding
 
@@ -55,7 +55,7 @@ When mutating or extending the dataset, always keep the indices in sync. MSW han
 ## Generators – Authoring Guidelines
 
 - Keep generators pure: they should only use the provided `faker` and arguments to return a typed value.
-- Use domain read types from `src/types/*` for outputs (e.g., `ThingRead`) where possible. Otherwise, create custom types in `mock-data/types.ts`.
+- Use domain read types from `src/types/*` for outputs (e.g., `ThingRead`) where possible. Otherwise, create custom types in `mocks/types.ts`.
 - Respect API invariants and optionals:
   - Example: optional entries should sometimes be `undefined`.
 - Use `UniqueEnforcer` (already wired in `dataset.ts`) for fields that must be unique.
@@ -85,9 +85,9 @@ If you add new entities or relationships, follow the same pattern: create base c
    - Implement `generate<Entity>({ faker, ...deps })` in `mocks/generators.ts`.
    - Ensure required foreign keys are passed in or computable.
 3. Static catalogs (optional)
-   - If the entity has a fixed base set (like model names or endpoint bases), add a list to `mock-data/src/facts/static.ts`.
+   - If the entity has a fixed base set (like model names or endpoint bases), add a list to `mocks/src/facts/static.ts`.
 4. Dataset assembly
-   - Extend `Dataset` in `mock-data/src/generators/dataset.ts` with new maps and necessary reverse indices.
+   - Extend `Dataset` in `mocks/src/generators/dataset.ts` with new maps and necessary reverse indices.
    - Update `buildDataset` to generate, link, and index the new entity consistently.
 5. MSW handlers
    - Add or update handlers in `msw/*.ts` to expose list/detail/mutations using the new dataset fields. See `msw/AGENTS.md` for conventions.
@@ -125,4 +125,4 @@ Add examples here
 
 ---
 
-For handler conventions and RBAC patterns, see `mock-backend/AGENTS.md`. For how mocks integrate into the app and tests, see the root `AGENTS.md` (sections 2.3–2.5).
+For handler conventions and RBAC patterns, see `msw/AGENTS.md`. For how mocks integrate into the app and tests, see the root `AGENTS.md` (sections 2.3–2.5).

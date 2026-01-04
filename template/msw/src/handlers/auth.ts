@@ -1,4 +1,4 @@
-import type { Dataset, JWTPayload } from '@repo/mock-data';
+import type { Dataset, JWTPayload } from '@repo/mocks';
 import { serialize } from '@tinyhttp/cookie';
 import { http, HttpResponse, type HttpHandler } from 'msw';
 
