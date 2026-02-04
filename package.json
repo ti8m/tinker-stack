@@ -12,6 +12,9 @@
   "engines": {
     "node": ">=22.3.0"
   },
+  "repository": {
+    "url": "https://github.com/ti8m/tinker-stack"
+  },
   "keywords": [
     "tinker-stack",
     "react",
