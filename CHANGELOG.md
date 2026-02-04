@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.7](https://github.com/ti8m/tinker-stack/compare/v0.2.6...v0.2.7) (2026-02-04)
+
+
+### Features
+
+* new folder structure ([#24](https://github.com/ti8m/tinker-stack/issues/24)) ([027ba14](https://github.com/ti8m/tinker-stack/commit/027ba14ef5a58d9be4a71256b7251463fae3e5aa))
+
 ## [0.2.6](https://github.com/ti8m/tinker-stack/compare/v0.2.5...v0.2.6) (2025-12-14)
 
 ## [0.2.5](https://github.com/ti8m/tinker-stack/compare/v0.2.4...v0.2.5) (2025-12-14)
