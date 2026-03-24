@@ -1,0 +1,61 @@
+{
+  "name": "@repo/msw",
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "rimraf dist && tsc && tsc-alias",
+    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "clean": "rimraf dist && rimraf .turbo",
+    "format": "prettier --write .",
+    "typecheck": "tsc && tsc-alias",
+    "lint": "eslint src",
+    "lint-staged": "lint-staged"
+  },
+  "dependencies": {
+    "@repo/api": "*",
+    "@repo/mocks": "*",
+    "@tinyhttp/cookie": "^2.1.1",
+    "memoize": "^10.2.0",
+    "msw": "^2.12.4",
+    "query-string": "^9.3.1"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/node": "^22.7.4",
+    "openapi-typescript": "^7.10.1",
+    "prettier": "^3.7.4"
+  },
+  "peerDependencies": {
+    "msw": "^2.4.9"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
+    },
+    "./handlers": {
+      "types": "./dist/src/handlers/index.d.ts",
+      "import": "./dist/src/handlers/index.js"
+    },
+    "./medium": {
+      "types": "./dist/medium/index.d.ts",
+      "import": "./dist/medium/index.js"
+    },
+    "./full": {
+      "types": "./dist/full/index.d.ts",
+      "import": "./dist/full/index.js"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}

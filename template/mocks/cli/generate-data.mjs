@@ -56,7 +56,7 @@ if (!config) {
 }
 
 if (seed) {
-	config.seed = seed;
+	console.warn('\x1b[33m Seed is ignored by the starter dataset generator. \u001B[0m');
 }
 
 const { data } = buildDataset(config);

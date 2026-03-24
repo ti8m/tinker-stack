@@ -2,56 +2,56 @@
 
 Siehe auch README.md.
 
-Wir verwenden Turborepo mit der https://turbo.build/repo/docs/core-concepts/internal-packages#compiled-packages[Compiled Packages] Strategie.
+Wir verwenden Turborepo mit kompilierten internen Paketen.
 
 Alle Pakete sind ESM-Module und verwenden den `@repo` Scope.
 
-Dieses Monorepo enthält die folgenden Pakete/Apps:
-
 == Apps und Pakete
 
-- `@repo/frontend`: das Frontend für die PLANNING STACK TEMPLATE Anwendung (noch zu erstellen).
-- `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
-- `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
-- `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
-- `@repo/mocks`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
-- `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
-- `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen `FAS` und `prototype`
-  gemeinsam genutzt wird
+- `@repo/frontend`: Platzhalter für das produktive Frontend
+- `@repo/prototype`: minimaler Prototyp für frühe UX-Validierung
+- `@repo/api`: Domain-Typen und Enums
+- `@repo/docs`: Antora-Dokumentation
+- `@repo/mocks`: Starter für generierte Mock-Daten
+- `@repo/msw`: Starter für MSW-Handler
+- `@repo/ui`: gemeinsame UI-Komponenten
 - `@repo/eslint-config`: `eslint`-Konfigurationen
-- `@repo/typescript-config`: `tsconfig.json`s, die im gesamten Monorepo verwendet werden
+- `@repo/typescript-config`: gemeinsame `tsconfig.json`
 
 == Build
 
-Die Builds sind alle von https://turbo.build[Turborepo] gesteuert und sollten aus dem
-Root-Verzeichnis heraus aufgerufen werden. werden.
-
-Um alle Apps und Pakete zu bauen, führe den folgenden Befehl aus:
+Die Basis-Workspaces werden über Turborepo gebaut:
 
 ```
 npm run build
 ```
 
-Es ist auch möglich, nur ein bestimmtes Paket oder eine bestimmte App zu bauen:
+Weitere hilfreiche Kommandos:
 
 ```
 npm run build:data
-
 npm run build:msw
-
 npm run build:prototype
 ```
 
-### Entwicklung
+== Entwicklung
 
-Aktuell ist standardmässig der Prototyp aktiviert. Um die Entwicklung zu starten, führe den
-folgenden Befehl aus. Dieser startet einen lokalen Server und watcher für die Abhängigen Pakete.
+Zum Starten der Basis-Entwicklung:
 
 ```
 npm run dev
 ```
 
+== Optionale Beispiele
 
+Beispiele werden unter `examples/<name>/` erzeugt und absichtlich nicht in die Root-Workspaces
+aufgenommen.
+
+Dadurch:
+
+* ignoriert Turborepo sie standardmässig
+* können sie separat installiert werden
+* können sie jederzeit gelöscht werden
 
 == Aufbau
 
@@ -59,6 +59,3 @@ npm run dev
 ----
 include::partial$monorepo.puml[]
 ----
-
-Das Monorepo verwendet die export und import Direktiven von node ESM Modulen.
-Alle exportierten Namespaces müssen in der package.json Datei aufgelistet werden.

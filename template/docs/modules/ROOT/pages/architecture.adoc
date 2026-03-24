@@ -5,51 +5,39 @@
 
 == Überblick
 
-Das PLANNING STACK TEMPLATE Frontend ist als Monorepo mit mehreren Packages aufgebaut. Der Fokus liegt auf:
+Das PLANNING STACK TEMPLATE Frontend ist als Monorepo aufgebaut. Der Fokus liegt auf:
 
-* Schnelle Iteration durch Prototyping
-* Wiederverwendbare Komponenten
+* schneller Iteration
+* klar getrennten Paketen
 * Typsicherheit durch TypeScript
-* Realistische Testdaten
+* optionalen, unabhängigen Referenzbeispielen
 
 == Architekturprinzipien
 
-=== Domain-Driven Design
+=== Starter zuerst
 
-
-
+Das Basisprojekt soll sofort installierbar und buildbar sein, ohne eine vorgefertigte Demo zu
+erzwingen.
 
 === Prototypen-getriebene Entwicklung
 
-Der Entwicklungsprozess folgt einem iterativen Ansatz:
+Der empfohlene Ablauf bleibt:
 
-1. Features werden zuerst im Prototyp implementiert
-2. Designer-, Stakeholder- und Benutzer-Feedback wird eingeholt
-3. Validierte Features werden in die produktive Anwendung übernommen
+1. Feature zuerst im Prototyp modellieren
+2. Feedback einholen
+3. Validierte Muster in die produktive Anwendung übernehmen
 
-Dies ermöglicht:
+=== Unabhängige Beispiele
 
-* Reduzierung von Entwicklungsrisiken
-* Validierung von UX-Konzepten
-* Schnelles Feedback von Benutzern
+Optionale Beispiele liegen ausserhalb der Root-Workspaces in `examples/<name>/`.
 
-=== Typsicherheit
+Das bedeutet:
 
-* Strikte TypeScript Konfiguration
-* Zentrale Definition von Domain Types
-* Shared Types zwischen Packages
-
-=== Komponenten-Bibliothek
-
-Die UI-Komponenten sind in einem separaten Package (`@repo/ui`) organisiert:
-
-* Basis auf shadcn/ui, Tailwind UI und Tailwind
-* Wiederverwendbar zwischen Prototyp und Produktion
-* Einheitliches Design-System basierend auf Tailwind UI und dem Figma Design System
+* keine automatische Teilnahme an `npm run build`
+* keine Kopplung an die Root-Turbo-Pipeline
+* sichere Löschbarkeit ohne Folgeschäden im Hauptprojekt
 
 == Technische Architektur
-
-Siehe auch xref:monorepo.adoc#aufbau[Monorepo].
 
 === Frontend Stack
 
@@ -62,84 +50,33 @@ Siehe auch xref:monorepo.adoc#aufbau[Monorepo].
 |Etabliert, grosses Ökosystem
 
 |React Router
-|Full-Stack Framework
-|Gute DX, Server Components
+|Starter-Prototyp
+|Schnelles Routing und gute DX
 
 |Tailwind
 |CSS Framework
-|Utility-First, Wartbar
-
-|shadcn/ui
-|UI-Komponenten
-|Zugänglich, Anpassbar
+|Schnelle, konsistente UI-Entwicklung
 
 |TypeScript
 |Programmiersprache
-|Typsicherheit, DX
+|Typsicherheit und Refactoring-Sicherheit
 |===
 
-=== Mock Backend
+=== Mocking
 
 [plantuml,msw,svg]
 ----
 @startuml
 actor Browser
-participant "React Router App" as App
+participant "Prototype" as App
 participant "MSW" as MSW
-database "Mock Data" as Data
 
 Browser -> App: Request
-App -> MSW: API Call
-MSW -> Data: Load Data
-Data --> MSW: Data
-MSW --> App: Response
+App -> MSW: Optional API Call
+MSW --> App: Mocked or passthrough response
 App --> Browser: Render
 @enduml
 ----
 
-* MSW (Mock Service Worker) für API-Simulation
-* Realistische HTTP-Requests
-* Einfacher Wechsel zu echtem Backend
-
-== Entwicklungsprozess
-
-=== Feature Entwicklung
-
-1. Feature-Anforderung
-2. Prototyp Implementation
-3. User Testing
-4. Feedback Integration
-5. Production Implementation
-
-=== Code Organisation
-
-* Feature-basierte Ordnerstruktur
-* Shared Logic in Utils
-* Typed API Boundaries
-
-== Deployment
-
-=== Prototype
-
-* Automatisches Deployment bei Push auf `main` 
-** URL: 
-** Aktuelle Entwicklungsversion
-* Deployment bei Tag-Commit
-** URL: 
-** Stabile Version für User-Testing
-
-=== Documentation
-
-* Antora Site Generator
-* Deployed zusammen mit Prototype
-* Automatische Updates
-
-== Supporting Subdomain
-
-
-== Zukünftige Entwicklung
-
-* Migration zu Production App
-* API Integration
-* E2E Tests
-* Performance Monitoring 
+Die Basis liefert nur eine starter-sichere MSW-Schicht. Projektspezifische Handler und Datensätze
+werden später ergänzt oder aus einem optionalen Beispiel übernommen.
