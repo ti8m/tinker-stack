@@ -2,7 +2,7 @@ import { http, HttpResponse, type HttpHandler } from 'msw';
 
 import type { AuthFunction } from '#/auth.js';
 import { serverDelay } from '#/utils.js';
-import type { Dataset, DatasetIndexes } from '@repo/mocks';
+import type { Dataset, DatasetIndexes, IWorkingAt } from '@repo/mocks';
 
 /**
  * The getHandlers function allows to inject the dependencies into the handlers
@@ -32,7 +32,7 @@ export function getHandlers({
 				});
 			}
 
-			const employees = workingAt.map(value => dataset.persons[value.personId]!);
+			const employees = workingAt.map((value: IWorkingAt) => dataset.persons[value.personId]!);
 			await serverDelay(employees.length, addDelay);
 			return HttpResponse.json(employees);
 		}),

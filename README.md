@@ -31,5 +31,4 @@ The generator is designed for multiple named examples. Today the repository incl
 
 - `react-router`
 
-Each example is installed and run separately from its own directory. The root project does not add
-example folders to its npm workspaces, so Turborepo ignores them by default.
+Each example is installed and run separately from its own directory. The root project does not add example folders to its npm workspaces, so Turborepo ignores them by default.
