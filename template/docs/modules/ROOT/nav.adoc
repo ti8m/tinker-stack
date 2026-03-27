@@ -5,7 +5,7 @@
 ** xref:architecture.adoc[Architektur]
 ** xref:monorepo.adoc[Monorepo]
 ** xref:prototype.adoc[Prototyp]
-** xref:mocks.adoc[Testdaten]
+** xref:mock-data.adoc[Testdaten]
 ** xref:design-system.adoc[Design System]
 ** xref:login.adoc[Login Flow]
 ** xref:tailwind.adoc[Tailwind] 
