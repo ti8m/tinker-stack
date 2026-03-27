@@ -1,32 +1,32 @@
 = Monorepo
 
-Siehe auch README.md.
+See also README.md.
 
-Wir verwenden Turborepo mit kompilierten internen Paketen.
+We use Turborepo with compiled internal packages.
 
-Alle Pakete sind ESM-Module und verwenden den `@repo` Scope.
+All packages are ESM modules and use the `@repo` scope.
 
-== Apps und Pakete
+== Apps and packages
 
-- `@repo/frontend`: Platzhalter für das produktive Frontend
-- `@repo/prototype`: minimaler Prototyp für frühe UX-Validierung
-- `@repo/api`: Domain-Typen und Enums
-- `@repo/docs`: Antora-Dokumentation
-- `@repo/mocks`: Starter für generierte Mock-Daten
-- `@repo/msw`: Starter für MSW-Handler
-- `@repo/ui`: gemeinsame UI-Komponenten
-- `@repo/eslint-config`: `eslint`-Konfigurationen
-- `@repo/typescript-config`: gemeinsame `tsconfig.json`
+- `@repo/frontend`: Placeholder for the production frontend
+- `@repo/prototype`: Minimal prototype for early UX validation
+- `@repo/api`: Domain types and enums
+- `@repo/docs`: Antora documentation
+- `@repo/mocks`: Starter for generated mock data
+- `@repo/msw`: Starter for MSW handlers
+- `@repo/ui`: Shared UI components
+- `@repo/eslint-config`: `eslint` configurations
+- `@repo/typescript-config`: Shared `tsconfig.json`
 
 == Build
 
-Die Basis-Workspaces werden über Turborepo gebaut:
+The base workspaces are built via Turborepo:
 
 ```
 npm run build
 ```
 
-Weitere hilfreiche Kommandos:
+Other useful commands:
 
 ```
 npm run build:data
@@ -34,26 +34,25 @@ npm run build:msw
 npm run build:prototype
 ```
 
-== Entwicklung
+== Development
 
-Zum Starten der Basis-Entwicklung:
+To start base development:
 
 ```
 npm run dev
 ```
 
-== Optionale Beispiele
+== Optional examples
 
-Beispiele werden unter `examples/<name>/` erzeugt und absichtlich nicht in die Root-Workspaces
-aufgenommen.
+Examples are generated under `examples/<name>/` and intentionally excluded from the root workspaces.
 
-Dadurch:
+This means:
 
-* ignoriert Turborepo sie standardmässig
-* können sie separat installiert werden
-* können sie jederzeit gelöscht werden
+* Turborepo ignores them by default
+* They can be installed separately
+* They can be deleted at any time
 
-== Aufbau
+== Structure
 
 [plantuml,monorepo,svg,role=component]
 ----

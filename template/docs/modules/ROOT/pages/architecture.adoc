@@ -1,65 +1,64 @@
-= Architektur
+= Architecture
 :experimental:
 :plantuml-server-url: http://www.plantuml.com/plantuml
 :source-highlighter: highlight.js
 
-== Überblick
+== Overview
 
-Das PLANNING STACK TEMPLATE Frontend ist als Monorepo aufgebaut. Der Fokus liegt auf:
+The PLANNING STACK TEMPLATE frontend is structured as a monorepo. The focus is on:
 
-* schneller Iteration
-* klar getrennten Paketen
-* Typsicherheit durch TypeScript
-* optionalen, unabhängigen Referenzbeispielen
+* fast iteration
+* clearly separated packages
+* type safety through TypeScript
+* optional, independent reference examples
 
-== Architekturprinzipien
+== Architecture principles
 
-=== Starter zuerst
+=== Starter first
 
-Das Basisprojekt soll sofort installierbar und buildbar sein, ohne eine vorgefertigte Demo zu
-erzwingen.
+The base project should be immediately installable and buildable without forcing a pre-built demo.
 
-=== Prototypen-getriebene Entwicklung
+=== Prototype-driven development
 
-Der empfohlene Ablauf bleibt:
+The recommended workflow remains:
 
-1. Feature zuerst im Prototyp modellieren
-2. Feedback einholen
-3. Validierte Muster in die produktive Anwendung übernehmen
+1. Model the feature in the prototype first
+2. Gather feedback
+3. Carry validated patterns into the production application
 
-=== Unabhängige Beispiele
+=== Independent examples
 
-Optionale Beispiele liegen ausserhalb der Root-Workspaces in `examples/<name>/`.
+Optional examples live outside the root workspaces under `examples/<name>/`.
 
-Das bedeutet:
+This means:
 
-* keine automatische Teilnahme an `npm run build`
-* keine Kopplung an die Root-Turbo-Pipeline
-* sichere Löschbarkeit ohne Folgeschäden im Hauptprojekt
+* no automatic participation in `npm run build`
+* no coupling to the root Turbo pipeline
+* safe to delete without side effects in the main project
 
-== Technische Architektur
+== Technical architecture
 
-=== Frontend Stack
+=== Frontend stack
 
 [cols="1,2,2"]
 |===
-|Technologie |Verwendung |Begründung
+|Technology |Usage |Rationale
 
 |React
-|UI Framework
-|Etabliert, grosses Ökosystem
+|UI framework
+|Established, large ecosystem
 
 |React Router
-|Starter-Prototyp
-|Schnelles Routing und gute DX
+|Starter prototype
+|Fast routing and good DX
 
 |Tailwind
-|CSS Framework
-|Schnelle, konsistente UI-Entwicklung
+|CSS framework
+|Fast, consistent UI development
 
 |TypeScript
-|Programmiersprache
-|Typsicherheit und Refactoring-Sicherheit
+|Programming language
+|Type safety and refactoring confidence
 |===
 
 === Mocking
@@ -78,5 +77,4 @@ App --> Browser: Render
 @enduml
 ----
 
-Die Basis liefert nur eine starter-sichere MSW-Schicht. Projektspezifische Handler und Datensätze
-werden später ergänzt oder aus einem optionalen Beispiel übernommen.
+The base provides only a starter-safe MSW layer. Project-specific handlers and datasets are added later or copied from an optional example.

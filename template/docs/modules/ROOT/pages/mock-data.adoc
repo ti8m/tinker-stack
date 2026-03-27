@@ -1,27 +1,25 @@
-= Testdaten
+= Mock Data
 :experimental:
 
-== Überblick
+== Overview
 
-Das `@repo/mocks` Package ist im Starter absichtlich neutral gehalten.
+The `@repo/mocks` package is intentionally neutral in the starter.
 
-Die Default-Implementierung erzeugt leere Datensätze, damit `npm run build:data` sofort
-funktioniert, auch wenn noch keine Domänenmodelle definiert wurden.
+The default implementation produces empty datasets so that `npm run build:data` works immediately, even before any domain models have been defined.
 
-== Starter-Verhalten
+== Starter behavior
 
-* Presets für `small`, `medium` und `full` sind vorhanden
-* Der Generator liefert standardmässig ein leeres JSON-Objekt
-* Die Struktur kann später durch projektspezifische Generatoren ersetzt werden
+* Presets for `small`, `medium`, and `full` are present
+* The generator returns an empty JSON object by default
+* The structure can be replaced later with project-specific generators
 
-== Nächste Schritte
+== Next steps
 
-1. Eigene Domänentypen in `@repo/api` definieren
-2. Presets in `mocks/src/generators/config.ts` anpassen
-3. Datenlogik in `mocks/src/generators/dataset.ts` implementieren
-4. JSON mit `npm run build:data` erzeugen
+1. Define your own domain types in `@repo/api`
+2. Adjust presets in `mocks/src/generators/config.ts`
+3. Implement data logic in `mocks/src/generators/dataset.ts`
+4. Generate JSON with `npm run build:data`
 
-== Beispiele
+== Examples
 
-Wenn ein optionales Beispiel mitgeneriert wurde, zeigt dessen `mocks/` Package eine vollständige
-Umsetzung in einem unabhängigen Kontext.
+If an optional example was generated alongside the project, its `mocks/` package shows a complete implementation in an independent context.

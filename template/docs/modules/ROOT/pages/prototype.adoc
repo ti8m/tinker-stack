@@ -1,35 +1,33 @@
-= Prototyp
+= Prototype
 :experimental:
 
-== Zweck
+== Purpose
 
-Der Starter-Prototyp ist absichtlich minimal. Er dient als:
+The starter prototype is intentionally minimal. It serves as:
 
-* Einstiegspunkt für den ersten validierbaren User Flow
-* Ort für schnelle UX-Iterationen
-* Schale, in die eigene API- und Mock-Logik eingesetzt wird
+* An entry point for the first validatable user flow
+* A place for rapid UX iteration
+* A shell into which your own API and mock logic can be plugged
 
-== Technischer Aufbau
+== Technical setup
 
-* React Router SPA mit TypeScript
+* React Router SPA with TypeScript
 * Tailwind CSS
-* Lokales MSW-Bootstrapping
-* Starter-Landing-Page statt Demo-Workflow
+* Local MSW bootstrapping
+* Starter landing page instead of a demo workflow
 
-== Startpunkt
+== Starting point
 
-Der Prototyp enthält standardmässig:
+The prototype ships with:
 
-* eine Root-Layout-Datei
-* eine Landing-Route
-* MSW Pass-Through Handler
+* A root layout file
+* A landing route
+* MSW pass-through handlers
 
-Von dort aus kann die gewünschte Feature-Struktur aufgebaut werden.
+From here the desired feature structure can be built up.
 
-== Optionale Beispiele
+== Optional examples
 
-Wenn ein Beispiel generiert wurde, enthält dieses einen vollständigen Referenz-Flow in seinem
-eigenen Verzeichnis unter `examples/<name>/`.
+If an example was generated, it contains a complete reference flow in its own directory under `examples/<name>/`.
 
-Diese Beispiele gehören nicht zur Build-Pipeline des Root-Projekts und können unabhängig gestartet
-oder gelöscht werden.
+These examples are not part of the root project's build pipeline and can be started or deleted independently.

@@ -1,16 +1,16 @@
-= Erste Schritte
+= Getting Started
 :experimental:
 :icons: font
 
-== Voraussetzungen
+== Prerequisites
 
-Für die Entwicklung werden folgende Tools benötigt:
+The following tools are required for development:
 
 * Node.js >= 22
 * npm >= 10
 * Git
 
-== Repository klonen
+== Clone the repository
 
 [source,bash]
 ----
@@ -20,76 +20,75 @@ cd planning-stack-template
 
 == Installation
 
-Das Projekt verwendet npm Workspaces. Alle Abhängigkeiten können mit einem Befehl installiert werden:
+The project uses npm Workspaces. All dependencies can be installed with a single command:
 
 [source,bash]
 ----
 npm install
 ----
 
-== Entwicklungsserver starten
+== Start the development server
 
-Der Entwicklungsserver kann direkt im Root-Verzeichnis gestartet werden:
+The development server can be started directly from the root directory:
 
 [source,bash]
 ----
 npm run dev
 ----
 
-Dies startet den Prototypen und die Watcher für die abhängigen Pakete.
+This starts the prototype and the watchers for dependent packages.
 
-Die Anwendung ist dann unter http://localhost:5173 erreichbar.
+The application is available at http://localhost:5173.
 
-== Mock-Daten
+== Mock data
 
-Der Starter liefert absichtlich leere Mock-Daten. Sobald eigene Generatoren vorhanden sind, kann das
-JSON wie gewohnt gebaut werden:
+The starter ships with intentionally empty mock data. Once your own generators are in place, the JSON can be built as usual:
 
 [source,bash]
 ----
 npm run build:data
 ----
 
-== Optionale Beispiele
+== Optional examples
 
-Falls das Projekt mit einem Beispiel generiert wurde, liegt dieses unter `examples/<name>/`.
+If the project was generated with an example, it is located under `examples/<name>/`.
 
-Die Beispiele sind unabhängig vom Hauptprojekt:
+Examples are independent from the main project:
 
-* Sie sind nicht Teil der Root-Workspaces
-* Sie werden nicht automatisch von Turborepo gebaut
-* Sie müssen im jeweiligen Beispielordner separat installiert werden
+* They are not part of the root workspaces
+* They are not automatically built by Turborepo
+* They must be installed separately inside their own folder
 
-== Projektstruktur
+== Project structure
 
 [source]
 ----
 .
-├── api/             # Domain Types & Enums
+├── api/             # Domain types & enums
 ├── config/
-│   ├── eslint/      # ESLint Konfigurationen
-│   ├── typescript/  # Typescript Konfigurationen
-├── docs/            # Dokumentation
-├── frontend/        # Platzhalter für das produktive Frontend
-├── mocks/           # Starter für generierte Mock-Daten
-├── msw/             # Starter für MSW-Handler
-├── prototype/       # Klickbarer UX-Prototyp
-└── ui/              # Design-System Komponenten
+│   ├── eslint/      # ESLint configurations
+│   ├── typescript/  # TypeScript configurations
+├── docs/            # Documentation
+├── frontend/        # Placeholder for the production frontend
+├── mocks/           # Starter for generated mock data
+├── msw/             # Starter for MSW handlers
+├── prototype/       # Clickable UX prototype
+└── ui/              # Design system components
 ----
 
-== Typische Entwicklungsabläufe
+== Typical development workflows
 
-=== Erste Produktstrecke im Prototyp entwickeln
+=== Build the first product flow in the prototype
 
-1. Feature-Branch erstellen
-2. Route in `prototype/app/routes.ts` ergänzen
-3. UI im Prototyp aufbauen
-4. Falls nötig Mock-Daten und MSW-Handler ergänzen
-5. Validieren und iterieren
+1. Create a feature branch
+2. Add a route in `prototype/app/routes.ts`
+3. Build the UI in the prototype
+4. Add mock data and MSW handlers as needed
+5. Validate and iterate
 
-=== Optionales Beispiel untersuchen
+=== Explore an optional example
 
-1. In den entsprechenden `examples/<name>/` Ordner wechseln
-2. Dort `npm install` ausführen
-3. Beispiel lokal starten oder bauen
-4. Gewünschte Muster gezielt in das Hauptprojekt übernehmen
+1. Navigate into the `examples/<name>/` folder
+2. Run `npm install` there
+3. Start or build the example locally
+4. Copy the patterns you need into the main project

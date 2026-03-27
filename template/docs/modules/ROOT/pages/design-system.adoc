@@ -1,13 +1,13 @@
 = Design System
 :experimental:
 
-== Überblick
+== Overview
 
 
-== Komponenten
+== Components
 
 
-=== Verwendung
+=== Usage
 
 [source,tsx]
 ----
@@ -25,33 +25,33 @@ export function IconButton({ icon: Icon }) {
 
 == Theming
 
-=== Figma Integration
+=== Figma integration
 
-* Designs aus Figma Projekt
-* Farben und Typography synchron halten
-* Komponenten-Patterns übernehmen
+* Designs from Figma project
+* Keep colors and typography in sync
+* Adopt component patterns
 
-=== Tailwind Konfiguration
+=== Tailwind configuration
 
-* Custom Colors aus CI
-* Spacing und Typography nach Design System
-* Erweiterbare Struktur
+* Custom colors from CI
+* Spacing and typography per design system
+* Extensible structure
 
-Siehe auch xref:tailwind.adoc[Tailwind Dokumentation] für Best Practices.
+See also xref:tailwind.adoc[Tailwind documentation] for best practices.
 
-== Komponenten entwickeln
+== Developing components
 
 === Workflow
 
-1. Figma Design reviewen
-2. shadcn/ui Komponente als Basis nehmen
-3. Mit Tailwind UI Patterns abgleichen
-4. An Design System anpassen
-5. Dokumentation erstellen
+1. Review Figma design
+2. Use a shadcn/ui component as a base
+3. Align with Tailwind UI patterns
+4. Adapt to the design system
+5. Write documentation
 
 === Guidelines
 
 * Accessibility first
-* Responsive Design
-* Konsistente Props API
-* Dokumentation in Storybook
+* Responsive design
+* Consistent props API
+* Documentation in Storybook

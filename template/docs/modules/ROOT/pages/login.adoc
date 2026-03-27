@@ -1,19 +1,19 @@
-= Login Flow (Prototyp)
+= Login Flow (Prototype)
 :experimental:
 
-== Überblick
+== Overview
 
-Der Prototyp enthält noch kein Login-System.
-Implementiere eine Authentifizierung passend zu deinem Projekt, z.B.:
+The prototype does not include a login system yet.
+Implement authentication that fits your project, for example:
 
-* Cookie-basierte Authentifizierung mit MSW Handlers
-* JWT oder Session Tokens
-* Integration mit einem IAM-System
+* Cookie-based authentication with MSW handlers
+* JWT or session tokens
+* Integration with an IAM system
 
-== Nächste Schritte
+== Next steps
 
-1. Definiere Test-Benutzer und Rollen in `@repo/mocks`
-2. Erstelle MSW Handler für Login/Logout Endpoints
-3. Implementiere Auth-Prüfung in geschützten Handlers
+1. Define test users and roles in `@repo/mocks`
+2. Create MSW handlers for login/logout endpoints
+3. Implement auth checks in protected handlers
 
-TIP: Das optionale Example-Projekt (`examples/`) enthält eine vollständige Login-Implementierung mit Mock-Benutzern als Referenz.
+TIP: The optional example project (`examples/`) contains a complete login implementation with mock users as a reference.

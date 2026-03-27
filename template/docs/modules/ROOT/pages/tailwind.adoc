@@ -1,12 +1,12 @@
-= Tailwind Tipps und Tricks
+= Tailwind Tips and Tricks
 
 Tailwind Docs: https://tailwindcss.com/docs/
 
 == State
-Die Seite soll barrierefrei sein, daher bietet es sich an, die States falls möglich
-auf den jeweiligen Aria-States zu basieren.
 
-.Beispiel Button
+The app should be accessible, so where possible it is advisable to base states on the corresponding ARIA attributes.
+
+.Example button
 ```tsx
     <Button
         key={section.id}
@@ -17,6 +17,6 @@ auf den jeweiligen Aria-States zu basieren.
     >
 ```
 
-Hier basiert der Button-State auf dem https://a11y-guidelines.orange.com/en/articles/using-aria-current-attribute/[`aria-current`] Attribut.
+Here the button state is based on the https://a11y-guidelines.orange.com/en/articles/using-aria-current-attribute/[`aria-current`] attribute.
 
-https://x.com/shadcn/status/1842329158879420864[Tailwind Tipps von shadcn]
+https://x.com/shadcn/status/1842329158879420864[Tailwind tips from shadcn]
