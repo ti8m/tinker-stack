@@ -7,6 +7,7 @@ By default it generates a clean starter workspace with:
 - a minimal React Router prototype shell
 - shared `api`, `ui`, `msw`, and `mocks` packages
 - Turborepo, TypeScript, ESLint, Prettier, and Antora wiring
+- every example template copied into `examples/<name>/`
 
 The scaffold no longer ships a demo application in the base workspace.
 
@@ -16,14 +17,20 @@ The scaffold no longer ships a demo application in the base workspace.
 npm create tinker-stack@latest
 ```
 
-To include an independent example template:
+To generate the base workspace without any example folders:
+
+```bash
+npm create tinker-stack@latest -- --no-examples
+```
+
+To generate only specific example templates:
 
 ```bash
 npm create tinker-stack@latest -- --example react-router
 ```
 
-The selected examples are copied into `examples/<name>/` inside the generated project. They are
-self-contained and can be deleted without affecting the main workspace.
+By default, all available examples are copied into `examples/<name>/` inside the generated project.
+They are self-contained and can be deleted without affecting the main workspace.
 
 ## Example templates
 

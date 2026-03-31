@@ -17,6 +17,7 @@ function parseCliArgs(argv = process.argv.slice(2)) {
     debug: undefined,
     install: undefined,
     examples: [],
+    noExamples: false,
     withExample: false
   };
   const positionals = [];
@@ -45,6 +46,11 @@ function parseCliArgs(argv = process.argv.slice(2)) {
 
     if (arg === '--with-example') {
       options.withExample = true;
+      continue;
+    }
+
+    if (arg === '--no-examples') {
+      options.noExamples = true;
       continue;
     }
 
@@ -129,16 +135,19 @@ function normalizeOptions(input = {}) {
       ? path.resolve(resolvedCwd, targetDir)
       : undefined;
 
-  const examples = [
+  const explicitExamples = [
     ...normalizeExampleNames(opts.examples),
     ...normalizeExampleNames(opts.example),
     ...normalizeExampleNames(cli.examples)
   ];
 
   if (opts.withExample === true || cli.withExample) {
-    examples.push(DEFAULT_EXAMPLE);
+    explicitExamples.push(DEFAULT_EXAMPLE);
   }
 
+  const noExamples = Boolean(opts.noExamples ?? cli.noExamples);
+  const hasExplicitExamples = explicitExamples.length > 0;
+  const examples = hasExplicitExamples ? explicitExamples : noExamples ? [] : getDefaultExamples();
   const normalizedExamples = [...new Set(examples)];
 
   return {
@@ -149,8 +158,21 @@ function normalizeOptions(input = {}) {
     cwd: resolvedCwd,
     templateDir, // always use the built-in template
     exampleTemplatesDir,
+    noExamples,
     examples: normalizedExamples
   };
+}
+
+function getDefaultExamples() {
+  try {
+    return fs
+      .readdirSync(exampleTemplatesDir, { withFileTypes: true })
+      .filter(entry => entry.isDirectory())
+      .map(entry => entry.name)
+      .sort();
+  } catch {
+    return [];
+  }
 }
 
 async function main(...args) {
