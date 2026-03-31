@@ -1,0 +1,105 @@
+= Prototyp
+:experimental:
+
+== Zweck
+
+Der PLANNING STACK TEMPLATE Prototyp dient als:
+
+* Testumgebung für neue Features und UX-Konzepte
+* Basis für Benutzerfeedback und Iterationen
+* Proof-of-Concept für technische Lösungen
+
+== Struktur
+
+Die Ordnerstruktur des Prototypen orientiert sich an den Modulen des Produktionssystems.
+Zusätzlich gibt es den Ordner 'components' für Modulübergreifende UI-Komponenten und 'hooks' für wiederverwendbare Logik.
+Der Ordner 'lib' enthält Hilfsfunktionen. Der Ordner 'mocks' die Logik für die Mock-Daten.
+
+Die Routen sind über eine Route-Konfiguration in app/routes.ts definiert.
+Die Route-Komponenten sind in den entsprechenden Modul-Ordnern.
+
+== API
+
+Der Prototyp verwendet das `ky` Paket für HTTP-Anfragen.
+
+
+=== Technischer Aufbau
+
+* React Router SPA mit TypeScript
+* Mock-Backend via MSW
+* Synthetische Testdaten
+* shadcn/ui Komponenten
+
+== Entwicklungsprozess
+
+=== Feature-Entwicklung
+
+1. Feature-Anforderung erfassen
+2. Schnelle Implementierung im Prototyp
+3. Review mit Stakeholdern
+4. Feedback einarbeiten
+5. User-Stories updaten
+6. Feature für Produktion freigeben
+
+=== Guidelines
+
+* Fokus auf Benutzerinteraktion, nicht auf Datenvalidierung
+* TODOs für fehlende Produktionsanforderungen
+* Schnelle Iteration über perfekte Implementation
+* Realistische Testdaten verwenden
+
+== Deployment
+
+Das Deployment erfolgt automatisch über die CI/CD Pipeline:
+
+=== Umgebungen
+
+[cols="1,3"]
+|===
+|Umgebung |Beschreibung
+
+|Continuous Integration
+|* Deployment bei Push auf `main`
+* URL: 
+* Aktuelle Entwicklungsversion
+
+|Acceptance Test
+|* Deployment bei Tag-Commit
+* URL: 
+* Stabile Version für User-Testing
+
+
+|Preview
+|* Preview-Umgebung, z.B. für Merge-Requests
+* URL: 
+* Alternative Version für A/B Tests.
+|===
+
+Die nötigen Zugangsdaten müssen in den Umgebungsvariablen gesetzt werden. Siehe `.env.example`.
+
+Das Deployment auf Preview kann bei einem Merge-Request manuell ausgelöst werden.
+
+=== Zugriff
+
+* Die Hosts sind über einen IP-Filter geschützt. Die Konfiguration ist in der .htaccess Datei im Ordner `prototype/app/public`.
+
+* Der Host für die Dokumentation kann nur vom internen Netzwerk aus erreicht werden.
+
+
+== Limitationen
+
+* Keine echte Backend-Anbindung
+* Eingeschränkte Validierung
+* Vereinfachte Berechtigungen
+* Keine Performance-Optimierung
+
+== Nächste Schritte
+
+* Integration von Benutzer-Feedback
+* Priorisierung der Features für Produktion
+* Identifikation technischer Herausforderungen 
+
+== Bekannte Probleme
+
+* msw in einer Version höher als 2.6.3 (getestet bis 2.6.6) funktioniert nicht mit dem dev server. Das CSS kann nicht geladen werden.
+Aktuell ist die Version auf 2.6.3 gepinnt. Allenfalls später nochmals testen und ggf. einen Github-Issue erstellen.

@@ -27,9 +27,6 @@
     "./commons/enums": {
       "types": "./dist/commons/enums.d.ts",
       "import": "./dist/commons/enums.js"
-    },
-    "./demo/types": {
-      "types": "./dist/demo/types.d.ts"
     }
   },
   "lint-staged": {

@@ -1,76 +1,45 @@
 # PLANNING STACK TEMPLATE Frontend Monorepo
 
-Dieses Monorepo enthält alle Module und Apps für das PLANNING STACK TEMPLATE Frontend. Inklusive der
-Testdaten und des Prototyps.
+This monorepo is the default Tinker Stack starter for PLANNING STACK TEMPLATE.
 
-## Was ist enthalten?
+It is intentionally lightweight:
 
-Dieses Monorepo enthält die folgenden Pakete/Apps:
-
-### Apps und Pakete
-
-- `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
-- `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
-- `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
-- `@repo/mocks`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
-- `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
-- `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen
-  `PLANNING STACK TEMPLATE` und `prototype` gemeinsam genutzt wird
-- `@repo/eslint-config`: `eslint`-Konfigurationen (enthält `eslint-config-next` und
-  `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s, die im gesamten Monorepo verwendet werden
-
-Jedes Paket/jede App ist in [TypeScript](https://www.typescriptlang.org/) geschrieben.
-
-## Dokumentation
-
-Die Entwickler-Dokumentation befindet sich im Ordner `docs`. Sie wird automatisch mittels
-Gitlab-Pages
-[hier](https://frontend-6dd0b0.pages.ti8m.ch/planning-stack-template-frontend/HEAD/index.html)
-veröffentlicht.
-
-Die Projekt-Dokumentation ist in [AsciiDoc](https://asciidoctor.org/) verfasst und wird mittels
-[Antora](https://antora.org/) generiert.
+- `@repo/prototype`: a minimal React Router prototype shell
+- `@repo/api`: shared domain types and enums
+- `@repo/docs`: Antora-based project documentation
+- `@repo/mocks`: starter-safe mock-data package
+- `@repo/msw`: starter-safe MSW package
+- `@repo/ui`: shared UI primitives
 
 ## Build
 
-Die Builds sind alle von [Turborepo](https://turbo.build) gesteuert und sollten aus dem
-Root-Verzeichnis heraus aufgerufen werden. werden.
+Run commands from the repository root:
 
-Um alle Apps und Pakete zu bauen, führe den folgenden Befehl aus:
-
-```
+```bash
 npm run build
+npm run typecheck
+npm run test
 ```
 
-Es ist auch möglich, nur ein bestimmtes Paket oder eine bestimmte App zu bauen:
+`npm run build:data` is available for the `@repo/mocks` package and succeeds even before you add
+real generators.
 
-```
-npm run build:data
+## Development
 
-npm run build:msw
+Start the prototype and package watchers:
 
-npm run build:prototype
-```
-
-### Entwicklung
-
-Bevor der Dev-Server zum ersten Mal gestartet werden kann, müssen die Mock-Daten gebaut werden.
-
-```
-npm run build:data
-```
-
-Aktuell ist standardmässig der Prototyp aktiviert. Um die Entwicklung zu starten, führe den
-folgenden Befehl aus. Dieser startet einen lokalen Server und watcher für die Abhängigen Pakete.
-
-```
+```bash
 npm run dev
 ```
 
-### Publish
+## Examples
 
-Der Prototyp sollte automatisch bei einem Push auf die `main`-Branch auf einen Preview-Server
-deployed werden.
+Optional examples, when generated, live under `examples/<name>/`.
 
-Die Dokumentation wird bei einem Push auf die `main`-Branch mittels Gitlab-Pages deployed.
+They are independent from this monorepo:
+
+- they are not listed in the root workspaces
+- they are not built by default Turbo commands
+- they can be installed, run, or deleted separately
+
+See the README inside each example directory for its own setup and copyable patterns.

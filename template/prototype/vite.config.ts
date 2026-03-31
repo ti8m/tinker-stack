@@ -8,15 +8,7 @@ export default defineConfig({
 		preserveSymlinks: false,
 	},
 	optimizeDeps: {
-		exclude:
-			process.env.NODE_ENV === 'development'
-				? [
-						'@repo/msw/medium',
-						'@repo/msw/handlers',
-						'@repo/api/stammdaten/enums',
-						'@repo/ui',
-					]
-				: [],
+		exclude: process.env.NODE_ENV === 'development' ? ['@repo/ui'] : [],
 	},
 	server: {
 		watch: {

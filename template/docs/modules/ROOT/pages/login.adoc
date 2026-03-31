@@ -1,62 +1,19 @@
-= Login Flow (Prototyp)
+= Login Flow (Prototype)
 :experimental:
 
-== Überblick
+== Overview
 
-Im Prototyp wird ein vereinfachtes Login-System verwendet:
+The prototype does not include a login system yet.
+Implement authentication that fits your project, for example:
 
-* Cookie-basierte Authentifizierung
-* Mock Implementation mit MSW
-* Vordefinierte Test-Benutzer
+* Cookie-based authentication with MSW handlers
+* JWT or session tokens
+* Integration with an IAM system
 
-== Implementation
+== Next steps
 
-=== Mock Service Worker
+1. Define test users and roles in `@repo/mocks`
+2. Create MSW handlers for login/logout endpoints
+3. Implement auth checks in protected handlers
 
-[plantuml,mock-auth,svg]
-----
-@startuml
-participant "Browser" as Browser
-participant "MSW Handler" as MSW
-database "Mock Data" as Data
-
-Browser -> MSW: POST /auth/login
-note right: Form Data mit Username
-MSW -> Data: Token lookup
-Data --> MSW: JWT Payload
-MSW -> MSW: Permissions aus\nRollen ermitteln
-MSW --> Browser: Set-Cookie: authToken
-@enduml
-----
-
-=== Test-Benutzer
-
-[cols="1,2,1"]
-|===
-|Persona |Organisation |Permissions
-
-|Administrator
-|Primär-Organisation
-|Alle Org-Berechtigungen
-
-|===
-
-== Authentifizierung
-
-Die Auth-Prüfung erfolgt in den MSW Handlers:
-
-[source,typescript]
-----
-// Beispiel eines geschützten msw Endpoints
-http.post('/reports/approve', async ({ cookies }) => {
-  const { sub, orgId, permissions } = auth(cookies);
-  // ... Handler Implementation
-});
-----
-
-== Hinweise
-
-* Diese Implementation ist nur für den Prototyp, sollte aber ähnlich sein zu der späteren Produktiv-Implementation
-* Keine echte Sicherheit
-* Dient nur der Feature-Entwicklung
-* Produktive Implementation erfolgt später mit IAM
+TIP: The optional example project (`examples/`) contains a complete login implementation with mock users as a reference.

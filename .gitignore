@@ -24,6 +24,7 @@ coverage
 # Build Outputs
 .next/
 out/
+my-project/
 build
 dist
 /.cache

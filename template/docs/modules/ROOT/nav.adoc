@@ -1,11 +1,11 @@
 :product: PLANNING STACK TEMPLATE
 
-* xref:index.adoc[Übersicht]
-** xref:getting-started.adoc[Erste Schritte]
-** xref:architecture.adoc[Architektur]
+* xref:index.adoc[Overview]
+** xref:getting-started.adoc[Getting Started]
+** xref:architecture.adoc[Architecture]
 ** xref:monorepo.adoc[Monorepo]
-** xref:prototype.adoc[Prototyp]
-** xref:mocks.adoc[Testdaten]
+** xref:prototype.adoc[Prototype]
+** xref:mock-data.adoc[Mock Data]
 ** xref:design-system.adoc[Design System]
 ** xref:login.adoc[Login Flow]
-** xref:tailwind.adoc[Tailwind] 
+** xref:tailwind.adoc[Tailwind]

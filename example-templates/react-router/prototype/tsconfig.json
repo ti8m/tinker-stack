@@ -1,0 +1,20 @@
+{
+  "extends": "@repo/typescript-config/react-app.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["@react-router/node", "vite/client"],
+    "paths": {
+      "#/*": ["./app/*"]
+    },
+    "outDir": "build",
+    "rootDirs": ["./", "./.react-router/types"]
+  },
+  "include": [
+    ".react-router/types/**/*",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "react-router.config.ts",
+    "vite.config.ts"
+  ],
+  "exclude": ["node_modules"]
+}

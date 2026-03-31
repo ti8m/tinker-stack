@@ -1,46 +1,25 @@
-= Testdaten
+= Mock Data
 :experimental:
 
-== Überblick
+== Overview
 
-Das `@repo/mocks` Package generiert synthetische Testdaten für die Entwicklung. Die Daten sind:
+The `@repo/mocks` package is intentionally neutral in the starter.
 
-* Realistisch und konsistent
-* Typsicher durch TypeScript
-* Reproduzierbar durch feste Seeds
+The default implementation produces empty datasets so that `npm run build:data` works immediately, even before any domain models have been defined.
 
-Die Daten werden im Entwicklungs-Modus On-The-Fly beim Reload der Applikation generiert.
+== Starter behavior
 
-== Generator
+* Presets for `small`, `medium`, and `full` are present
+* The generator returns an empty JSON object by default
+* The structure can be replaced later with project-specific generators
 
-=== Technologie
+== Next steps
 
-* https://fakerjs.dev/[Faker.js] für realistische Daten
-* TypeScript für Typsicherheit
-* 3 vorgegebene Konfigurationen für unterschiedliche Datenmengen
-  ** `small`: Für manuelle Prüfung der erstellten Daten.
-  ** `medium`: Für automatisches Testen und Entwicklung.
-  ** `full`: Alle Organisationen, für vollständige Tests.
+1. Define your own domain types in `@repo/api`
+2. Adjust presets in `mocks/src/generators/config.ts`
+3. Implement data logic in `mocks/src/generators/dataset.ts`
+4. Generate JSON with `npm run build:data`
 
+== Examples
 
-=== Verwendung
-
-Siehe `@repo/mocks/README.md`
-
-Der Ordner enthält Generator-Klassen für die einzelnen Entitäten.
-
-In der Datei `dataset.ts` werden die einzelnen Generatoren zu einem Datensatz zusammengefasst.
-
-== Daten erweitern
-
-1. Domain-Types in `@repo/api` definieren und falls nötig im lokalen Repository anpassen.
-2. Generator in `@repo/mocks/src/generators` erstellen
-3. In `dataset.ts` integrieren
-4. Build mit `npm run build:data`
-
-== Best Practices
-
-* Realistische Wertebereiche verwenden
-* Beziehungen zwischen Entitäten beachten
-* Lokale Besonderheiten berücksichtigen (z.B. Schweizer Adressen)
-* Reproduzierbarkeit durch Seeds sicherstellen 
+If an optional example was generated alongside the project, its `mocks/` package shows a complete implementation in an independent context.

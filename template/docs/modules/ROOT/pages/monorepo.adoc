@@ -1,64 +1,60 @@
 = Monorepo
 
-Siehe auch README.md.
+See also README.md.
 
-Wir verwenden Turborepo mit der https://turbo.build/repo/docs/core-concepts/internal-packages#compiled-packages[Compiled Packages] Strategie.
+We use Turborepo with compiled internal packages.
 
-Alle Pakete sind ESM-Module und verwenden den `@repo` Scope.
+All packages are ESM modules and use the `@repo` scope.
 
-Dieses Monorepo enthält die folgenden Pakete/Apps:
+== Apps and packages
 
-== Apps und Pakete
-
-- `@repo/frontend`: das Frontend für die PLANNING STACK TEMPLATE Anwendung (noch zu erstellen).
-- `@repo/prototype`: ein Prototyp für die PLANNING STACK TEMPLATE Anwendung.
-- `@repo/api`: ein Paket, das die Domain-Typen und -Enums bereitstellt.
-- `@repo/docs`: Dokumentationen für die PLANNING STACK TEMPLATE Anwendung im Antora-Format.
-- `@repo/mocks`: ein Paket, das synthetische Daten für die Anwendungen bereitstellt.
-- `@repo/mock-api`: ein Paket, das eine Mock-API über Service-Worker bereitstellt.
-- `@repo/ui`: eine Basis-React-Komponentenbibliothek, die von den Anwendungen `FAS` und `prototype`
-  gemeinsam genutzt wird
-- `@repo/eslint-config`: `eslint`-Konfigurationen
-- `@repo/typescript-config`: `tsconfig.json`s, die im gesamten Monorepo verwendet werden
+- `@repo/frontend`: Placeholder for the production frontend
+- `@repo/prototype`: Minimal prototype for early UX validation
+- `@repo/api`: Domain types and enums
+- `@repo/docs`: Antora documentation
+- `@repo/mocks`: Starter for generated mock data
+- `@repo/msw`: Starter for MSW handlers
+- `@repo/ui`: Shared UI components
+- `@repo/eslint-config`: `eslint` configurations
+- `@repo/typescript-config`: Shared `tsconfig.json`
 
 == Build
 
-Die Builds sind alle von https://turbo.build[Turborepo] gesteuert und sollten aus dem
-Root-Verzeichnis heraus aufgerufen werden. werden.
-
-Um alle Apps und Pakete zu bauen, führe den folgenden Befehl aus:
+The base workspaces are built via Turborepo:
 
 ```
 npm run build
 ```
 
-Es ist auch möglich, nur ein bestimmtes Paket oder eine bestimmte App zu bauen:
+Other useful commands:
 
 ```
 npm run build:data
-
 npm run build:msw
-
 npm run build:prototype
 ```
 
-### Entwicklung
+== Development
 
-Aktuell ist standardmässig der Prototyp aktiviert. Um die Entwicklung zu starten, führe den
-folgenden Befehl aus. Dieser startet einen lokalen Server und watcher für die Abhängigen Pakete.
+To start base development:
 
 ```
 npm run dev
 ```
 
+== Optional examples
 
+Examples are generated under `examples/<name>/` and intentionally excluded from the root workspaces.
 
-== Aufbau
+This means:
+
+* Turborepo ignores them by default
+* They can be installed separately
+* They can be deleted at any time
+
+== Structure
 
 [plantuml,monorepo,svg,role=component]
 ----
 include::partial$monorepo.puml[]
 ----
-
-Das Monorepo verwendet die export und import Direktiven von node ESM Modulen.
-Alle exportierten Namespaces müssen in der package.json Datei aufgelistet werden.

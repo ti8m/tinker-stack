@@ -7,6 +7,7 @@
   "type": "module",
   "files": [
     "template",
+    "example-templates",
     "create"
   ],
   "engines": {
@@ -32,12 +33,12 @@
     "create-tinker-stack"
   ],
   "scripts": {
-    "prerelease": "find template -name package-lock.json -delete && find template -name tsconfig.tsbuildinfo -delete && find template -name .turbo -type d -prune -exec rm -rf {} +",
+    "prerelease": "find template example-templates -name package-lock.json -delete && find template example-templates -name tsconfig.tsbuildinfo -delete && find template example-templates -name .turbo -type d -prune -exec rm -rf {} +",
     "release": "commit-and-tag-version",
     "test": "npm run test:e2e",
     "test:e2e": "vitest run --no-file-parallelism",
     "upgrade:template": "npx npm-check-updates --interactive --format group -c 2 -w --cwd template",
-    "postupgrade:template": "find template -name package-lock.json -delete && find template -name node_modules -type d -prune -exec rm -rf {} +",
+    "postupgrade:template": "find template example-templates -name package-lock.json -delete && find template example-templates -name node_modules -type d -prune -exec rm -rf {} +",
     "upgrade:root": "npx npm-check-updates --interactive --format group -c 2"
   },
   "dependencies": {

@@ -1,0 +1,57 @@
+= Design System
+:experimental:
+
+== Überblick
+
+
+== Komponenten
+
+
+=== Verwendung
+
+[source,tsx]
+----
+import { Button } from '@repo/ui/components/button'
+import { LucideIcon } from 'lucide-react'
+
+export function IconButton({ icon: Icon }) {
+  return (
+    <Button variant="ghost" size="icon">
+      <Icon className="h-4 w-4" />
+    </Button>
+  )
+}
+----
+
+== Theming
+
+=== Figma Integration
+
+* Designs aus Figma Projekt
+* Farben und Typography synchron halten
+* Komponenten-Patterns übernehmen
+
+=== Tailwind Konfiguration
+
+* Custom Colors aus CI
+* Spacing und Typography nach Design System
+* Erweiterbare Struktur
+
+Siehe auch xref:tailwind.adoc[Tailwind Dokumentation] für Best Practices.
+
+== Komponenten entwickeln
+
+=== Workflow
+
+1. Figma Design reviewen
+2. shadcn/ui Komponente als Basis nehmen
+3. Mit Tailwind UI Patterns abgleichen
+4. An Design System anpassen
+5. Dokumentation erstellen
+
+=== Guidelines
+
+* Accessibility first
+* Responsive Design
+* Konsistente Props API
+* Dokumentation in Storybook

@@ -18,25 +18,25 @@ package "PLANNING STACK TEMPLATE Frontend Monorepo" {
   [config/typescript]<<package>> as typescriptConfig
 }
 
-prototype --> api : verwendet
-prototype --> mockApi : verwendet
-prototype --> ui : verwendet
+prototype --> api : uses
+prototype --> mockApi : uses
+prototype --> ui : uses
 
-frontend --> api : verwendet
-frontend --> mockApi : verwendet
-frontend --> ui : verwendet
+frontend --> api : uses
+frontend --> mockApi : uses
+frontend --> ui : uses
 
-mockApi --> mockData : verwendet
-mockApi --> api : verwendet
-mockData --> api : verwendet
+mockApi --> mockData : uses
+mockApi --> api : uses
+mockData --> api : uses
 
-note top of prototype : PLANNING STACK TEMPLATE Anwendung Prototyp
-note top of frontend : PLANNING STACK TEMPLATE Anwendung Frontend
-note bottom of api : Domain-Typen und -Enums
-note bottom of mockData : Synthetische Daten
-note left of mockApi : Mock-API über Service-Worker
-note right of ui : React-Komponentenbibliothek
-note top of eslintConfig : ESLint-Konfigurationen
-note top of typescriptConfig : TypeScript-Konfigurationen
+note top of prototype : PLANNING STACK TEMPLATE Application Prototype
+note top of frontend : PLANNING STACK TEMPLATE Application Frontend
+note bottom of api : Domain types and enums
+note bottom of mockData : Synthetic data
+note left of mockApi : Mock API via Service Worker
+note right of ui : React component library
+note top of eslintConfig : ESLint configurations
+note top of typescriptConfig : TypeScript configurations
 
 @enduml

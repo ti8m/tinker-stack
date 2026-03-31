@@ -1,21 +1,18 @@
-# PLANNING STACK TEMPLATE Prototyp
+# PLANNING STACK TEMPLATE Prototype
 
-Dies ist ein klickbarer UX-Prototyp für das PLANNING STACK TEMPLATE-Projekt. Er ist nicht für den
-Produktiveinsatz gedacht. Der Code ist schnell und einfach geschrieben und nicht optimiert.
+This package contains the starter prototype shell for PLANNING STACK TEMPLATE.
 
-Das Ziel dieses Prototyps ist es, schnell über das Design und die Funktionalität der PLANNING STACK
-TEMPLATE-Anwendung iterieren zu können.
+It is intentionally minimal:
 
-Das verwendete UI-Framework ist [shadcn/ui](https://ui.shadcn.com/) mit Tailwind. Das Iconpaket ist
-[Lucide](https://lucide.dev/icons/).
+- one landing route
+- local MSW bootstrapping with pass-through handlers
+- shared UI primitives and Tailwind setup
 
-Die Daten werden mit dem Mock-Daten-Generator erzeugt.
+Use it as the place where your first real flow takes shape.
 
-## URL
+## Development
 
-## Entwicklung
-
-Der Prototyp mit dem Mock-Server kann mit folgendem Befehl gestartet werden:
+Start the prototype from the monorepo root:
 
 ```shellscript
 npm run dev
