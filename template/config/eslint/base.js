@@ -55,6 +55,19 @@ export default tseslint.config(
 			'import/no-unresolved': 'off', // does not properly work with nodenext yet.
 			'import/no-relative-packages': 'error',
 			'import/no-relative-parent-imports': 'error',
+			// align with TypeScript style
+			"@typescript-eslint/no-unused-vars": [
+				"error",
+				{
+					"args": "all",
+					"argsIgnorePattern": "^_",
+					"caughtErrors": "all",
+					"caughtErrorsIgnorePattern": "^_",
+					"destructuredArrayIgnorePattern": "^_",
+					"varsIgnorePattern": "^_",
+					"ignoreRestSiblings": true
+				}
+			]
 		},
 	},
 	eslintConfigPrettier,

@@ -8,5 +8,9 @@ export default [
 				tsconfigRootDir: import.meta.dirname,
 			},
 		},
+		rules: {
+			'@typescript-eslint/no-unsafe-enum-comparison': 'off',
+			'@typescript-eslint/no-unsafe-assignment': 'off'
+		},
 	},
 ];

@@ -4,7 +4,7 @@
     "baseUrl": ".",
     "types": ["@react-router/node", "vite/client"],
     "paths": {
-      "#/*": ["./app/*"]
+      "#/*": ["./app/*"],
     },
     "outDir": "build",
     "rootDirs": ["./", "./.react-router/types"]

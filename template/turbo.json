@@ -42,7 +42,7 @@
       "dependsOn": ["^typecheck"]
     },
     "@repo/prototype#build": {
-      "inputs": ["public/**", "react-router.config.ts", "vite.config.ts", "taiwind.config.js"],
+      "inputs": ["public/**", "react-router.config.ts", "vite.config.ts", "styles/tailwind.css"],
       "dependsOn": ["^@repo/msw#build"],
       "outputs": ["build/client/**"],
       "env": ["VITE_BUILD_NUMBER", "VITE_VERSION"]
