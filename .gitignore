@@ -11,39 +11,40 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+local.settings.json
 
 # Testing
 coverage
 
 # Turbo
-.turbo
+.turbo/
 
 # Vercel
-.vercel
+.vercel/
 
 # Build Outputs
 .next/
 out/
 my-project/
-build
-dist
+build/
+dist/
 /.cache
 .react-router/
 /public/build
 tsconfig.tsbuildinfo
 data-mocks/
 *.tgz
+*.tsbuildinfo
 
 # Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*.log
 vite.config.ts.timestamp-*
+.playwright-mcp/
 
 # Misc
 .DS_Store
 *.pem
 .idea/
-
+.mcp.json
 
 catalyst-ui-kit/
