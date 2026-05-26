@@ -22,30 +22,6 @@ export async function main({ cwd, templateDir, exampleTemplatesDir, targetDir, e
     errorOnExist: true,
   });
 
-  if (examples.length > 0) {
-    const examplesDir = path.join(targetDir, 'examples');
-    await fs.mkdir(examplesDir, { recursive: true });
-
-    for (const example of examples) {
-      const sourceDir = path.join(exampleTemplatesDir, example);
-
-      try {
-        const stat = await fs.stat(sourceDir);
-        if (!stat.isDirectory()) {
-          throw new Error(`Example template path is not a directory: ${sourceDir}`);
-        }
-      } catch (error) {
-        throw new Error(`Unknown example template "${example}"`);
-      }
-
-      await fs.cp(sourceDir, path.join(examplesDir, example), {
-        recursive: true,
-        force: false,
-        errorOnExist: true,
-      });
-    }
-  }
-
   const EXAMPLE_ENV_PATH = path.join(targetDir, '.env.example');
   const ENV_PATH = path.join(targetDir, '.env');
   const PKG_PATH = path.join(targetDir, 'package.json');
@@ -97,6 +73,54 @@ export async function main({ cwd, templateDir, exampleTemplatesDir, targetDir, e
     fs.writeFile(PKG_PATH, JSON.stringify(packageJson, null, 2)),
   ]);
 
+  if (examples.length > 0) {
+    const examplesDir = path.join(targetDir, 'examples');
+    await fs.mkdir(examplesDir, { recursive: true });
+
+    for (const example of examples) {
+      const sourceDir = path.join(exampleTemplatesDir, example);
+
+      try {
+        const stat = await fs.stat(sourceDir);
+        if (!stat.isDirectory()) {
+          throw new Error(`Example template path is not a directory: ${sourceDir}`);
+        }
+      } catch (error) {
+        throw new Error(`Unknown example template "${example}"`);
+      }
+
+      const exampleTargetDir = path.join(examplesDir, example);
+
+      // Copy from templateDir (not targetDir) to avoid a circular-copy error —
+      // Node rejects copying a directory into its own subdirectory at the path-check
+      // level, before any filter function is called.
+      await fs.cp(templateDir, exampleTargetDir, {
+        recursive: true,
+        force: false,
+        errorOnExist: true,
+      });
+
+      // Apply the same token replacements as for the main project, remapped to exampleTargetDir.
+      const remap = (f) => path.join(exampleTargetDir, path.relative(targetDir, f));
+      await replaceTokensInFiles(filesWithAppTitle.map(remap), appTitleRegex, APP_TITLE);
+      await replaceTokensInFiles(filesWithAppName.map(remap), appNameRegex, APP_NAME);
+
+      // Mirror the package.json cleanup and .env setup.
+      const exPkgPath = path.join(exampleTargetDir, 'package.json');
+      const exPkg = JSON.parse(await fs.readFile(exPkgPath, 'utf-8'));
+      exPkg.name = APP_NAME;
+      delete exPkg.author;
+      delete exPkg.license;
+      await Promise.all([
+        fs.copyFile(path.join(exampleTargetDir, '.env.example'), path.join(exampleTargetDir, '.env')),
+        fs.writeFile(exPkgPath, JSON.stringify(exPkg, null, 2)),
+      ]);
+
+      // Overlay example-specific files on top.
+      await mergeExampleFiles(sourceDir, exampleTargetDir);
+    }
+  }
+
   if (!process.env.SKIP_SETUP) {
     execSync('npm install', { cwd: targetDir, stdio: 'inherit' });
     execSync('npm run typecheck', { cwd: targetDir, stdio: 'inherit' });
@@ -122,6 +146,44 @@ What's next?
 - Iterate
     `.trim(),
   );
+}
+
+async function mergeExampleFiles(sourceDir, targetDir) {
+  const entries = await fs.readdir(sourceDir, { recursive: true, withFileTypes: true });
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const relativePath = path.relative(sourceDir, path.join(entry.parentPath, entry.name));
+    const sourcePath = path.join(sourceDir, relativePath);
+    const targetPath = path.join(targetDir, relativePath);
+
+    if (relativePath.endsWith('.json')) {
+      const base = JSON.parse(await fs.readFile(targetPath, 'utf-8'));
+      const delta = JSON.parse(await fs.readFile(sourcePath, 'utf-8'));
+      await fs.writeFile(targetPath, JSON.stringify(deepMerge(base, delta), null, 2));
+    } else {
+      await fs.mkdir(path.dirname(targetPath), { recursive: true });
+      await fs.copyFile(sourcePath, targetPath);
+    }
+  }
+}
+
+function deepMerge(base, override) {
+  const result = { ...base };
+  for (const [key, value] of Object.entries(override)) {
+    if (
+      value !== null &&
+      typeof value === 'object' &&
+      !Array.isArray(value) &&
+      result[key] !== null &&
+      typeof result[key] === 'object' &&
+      !Array.isArray(result[key])
+    ) {
+      result[key] = deepMerge(result[key], value);
+    } else {
+      result[key] = value;
+    }
+  }
+  return result;
 }
 
 async function replaceTokensInFiles(files, pattern, replacement) {

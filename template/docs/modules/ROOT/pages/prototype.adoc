@@ -26,8 +26,28 @@ The prototype ships with:
 
 From here the desired feature structure can be built up.
 
+== Feature development workflow
+
+1. Capture the feature requirement
+2. Implement it quickly in the prototype
+3. Review with stakeholders
+4. Incorporate feedback
+5. Update user stories
+6. Release the feature for production implementation
+
+== Guidelines
+
+* Focus on user interaction, not data validation
+* Mark gaps with TODO comments rather than blocking on production requirements
+* Prefer fast iteration over a perfect implementation
+* Use realistic mock data to surface UX problems early
+
 == Optional examples
 
 If an example was generated, it contains a complete reference flow in its own directory under `examples/<name>/`.
 
 These examples are not part of the root project's build pipeline and can be started or deleted independently.
+
+== Known issues
+
+* MSW versions above 2.6.3 (tested up to 2.6.6) break the dev server — CSS cannot be loaded. The version is currently pinned to 2.6.3. Test again after future MSW releases and open a GitHub issue if the problem persists.

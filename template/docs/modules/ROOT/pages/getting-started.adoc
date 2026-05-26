@@ -27,27 +27,33 @@ The project uses npm Workspaces. All dependencies can be installed with a single
 npm install
 ----
 
-== Start the development server
+== Set up the development environment
 
-The development server can be started directly from the root directory:
+=== Generate mock data
+
+Before the first start, build the mock data:
+
+[source,bash]
+----
+npm run build:data
+----
+
+=== Start the development server
+
+The development server can be started from the root directory:
 
 [source,bash]
 ----
 npm run dev
 ----
 
-This starts the prototype and the watchers for dependent packages.
+This starts:
+
+* The prototype development server
+* A watcher for mock data
+* A watcher for UI components
 
 The application is available at http://localhost:5173.
-
-== Mock data
-
-The starter ships with intentionally empty mock data. Once your own generators are in place, the JSON can be built as usual:
-
-[source,bash]
-----
-npm run build:data
-----
 
 == Optional examples
 
@@ -76,15 +82,36 @@ Examples are independent from the main project:
 └── ui/              # Design system components
 ----
 
+== IDE configuration
+
+=== VS Code
+
+Recommended extensions:
+
+* ESLint
+* Prettier
+* Tailwind CSS IntelliSense
+* AsciiDoc
+
+The project settings for VS Code are already included in the repository.
+
+=== WebStorm
+
+The following plugins are required for WebStorm:
+
+* Tailwind CSS
+* AsciiDoc
+
 == Typical development workflows
 
-=== Build the first product flow in the prototype
+=== Develop a new feature in the prototype
 
 1. Create a feature branch
 2. Add a route in `prototype/app/routes.ts`
-3. Build the UI in the prototype
-4. Add mock data and MSW handlers as needed
-5. Validate and iterate
+3. Build the UI using shadcn/ui components
+4. Extend mock data in `mocks/` if needed
+5. Test and iterate
+6. Open a pull request
 
 === Explore an optional example
 
@@ -92,3 +119,12 @@ Examples are independent from the main project:
 2. Run `npm install` there
 3. Start or build the example locally
 4. Copy the patterns you need into the main project
+
+== Troubleshooting
+
+[qanda]
+TypeScript errors after `npm install`::
+  Run `npm run build` to compile all packages first.
+
+Mock data is not updated::
+  Delete the `.cache` folder and re-run `npm run build:data`.
