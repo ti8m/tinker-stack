@@ -9,17 +9,35 @@ The default implementation produces empty datasets so that `npm run build:data` 
 
 == Starter behavior
 
-* Presets for `small`, `medium`, and `full` are present
-* The generator returns an empty JSON object by default
-* The structure can be replaced later with project-specific generators
+Three dataset presets are provided out of the box:
 
-== Next steps
+* `small` — a handful of records; useful for manually verifying the shape of generated data
+* `medium` — a realistic volume; suitable for automated testing and day-to-day development
+* `full` — the complete dataset; used for thorough integration tests
 
-1. Define your own domain types in `@repo/api`
+The default implementation returns an empty JSON object so that `npm run build:data` succeeds immediately, even before any domain models have been defined.
+
+== Generator structure
+
+Each entity has its own generator class under `mocks/src/generators/`.
+The file `dataset.ts` composes all generators into a single dataset object and is the main entry point for the build.
+
+See `@repo/mocks/README.md` for usage details.
+
+== Extending mock data
+
+1. Define domain types in `@repo/api`
 2. Adjust presets in `mocks/src/generators/config.ts`
-3. Implement data logic in `mocks/src/generators/dataset.ts`
-4. Generate JSON with `npm run build:data`
+3. Create a generator class in `mocks/src/generators/`
+4. Integrate it in `dataset.ts`
+5. Rebuild with `npm run build:data`
+
+== Best practices
+
+* Use realistic value ranges to surface UI edge cases early
+* Maintain relationships between entities (e.g. a person always belongs to a valid organisation)
+* Seed the random generator so datasets are reproducible across runs
 
 == Examples
 
-If an optional example was generated alongside the project, its `mocks/` package shows a complete implementation in an independent context.
+If an optional example was generated alongside the project, its `mocks/` package shows a complete implementation using https://fakerjs.dev/[Faker.js] in an independent context.

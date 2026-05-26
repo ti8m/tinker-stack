@@ -2,7 +2,7 @@
 
 See also README.md.
 
-We use Turborepo with compiled internal packages.
+We use Turborepo with the https://turbo.build/repo/docs/core-concepts/internal-packages#compiled-packages[Compiled Packages] strategy.
 
 All packages are ESM modules and use the `@repo` scope.
 
@@ -58,3 +58,6 @@ This means:
 ----
 include::partial$monorepo.puml[]
 ----
+
+The monorepo uses the `exports` and `imports` directives from Node ESM modules.
+All exported namespaces must be declared in the package's `package.json`.

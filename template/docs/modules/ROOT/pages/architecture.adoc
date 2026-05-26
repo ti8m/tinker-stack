@@ -69,10 +69,13 @@ This means:
 actor Browser
 participant "Prototype" as App
 participant "MSW" as MSW
+database "Mock Data" as Data
 
 Browser -> App: Request
-App -> MSW: Optional API Call
-MSW --> App: Mocked or passthrough response
+App -> MSW: API Call
+MSW -> Data: Load data
+Data --> MSW: Data
+MSW --> App: Response
 App --> Browser: Render
 @enduml
 ----
