@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.10](https://github.com/ti8m/tinker-stack/compare/v0.2.9...v0.2.10) (2026-05-26)
+
+
+### Features
+
+* Reduce the files in the example ([#30](https://github.com/ti8m/tinker-stack/issues/30)) ([9c393a2](https://github.com/ti8m/tinker-stack/commit/9c393a2c0e5d2d92c7eded7c120628ac314087e5))
+
 ## [0.2.9](https://github.com/ti8m/tinker-stack/compare/v0.2.8...v0.2.9) (2026-03-31)
 
 
