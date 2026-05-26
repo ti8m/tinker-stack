@@ -11,7 +11,7 @@ To verify the generator before publishing:
 npx --yes create-tinker-stack@file://$(pwd)/create-tinker-stack-0.2.9.tgz my-project
 ```
 
-This scaffolds a clean starter into `./my-project`.
+This scaffolds a clean starter into `./my-project` with the example bundles.
 
 The example is placed in `my-project/examples/react-router/` and is independent of the root workspace.
 

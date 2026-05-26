@@ -1,4 +1,3 @@
-import containerQueries from '@tailwindcss/container-queries'; // Obsolete in Tailwind 4
 import typography from '@tailwindcss/typography';
 import animate from 'tailwindcss-animate';
 
@@ -56,5 +55,5 @@ export default {
 			},
 		},
 	},
-	plugins: [typography, animate, containerQueries],
+	plugins: [typography, animate],
 };
