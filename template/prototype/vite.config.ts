@@ -15,7 +15,7 @@ export default defineConfig(({ mode }) => ({
 		tsconfigPaths: true,
 	},
 	optimizeDeps: {
-		exclude: mode === 'development' ? ['@repo/ui'] : [],
+		exclude: mode === 'development' ? ['@repo/ui', '@repo/api'] : [],
 	},
 	server: {
 		watch: {
