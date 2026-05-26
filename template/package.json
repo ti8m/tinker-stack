@@ -18,23 +18,21 @@
   "devDependencies": {
     "@repo/api": "*",
     "eslint-plugin-import": "^2.32.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.3",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "tsc-alias": "^1.8.16",
-    "turbo": "^2.6.3",
-    "typescript": "^5.9.3",
-    "vite": "^7.2.7",
-    "vitest": "^4.0.15",
-    "vite-tsconfig-paths": "^5.1.4"
+    "tsc-alias": "^1.8.17",
+    "turbo": "^2.9.14",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.14",
+    "vitest": "^4.1.7"
   },
   "engines": {
     "node": ">=22"
   },
   "resolutions": {
-    "typescript": "5.8.3"
   },
   "type": "module",
-  "packageManager": "npm@11.7.0",
+  "packageManager": "npm@11.15.0",
   "license": "MIT",
   "workspaces": [
     "api",

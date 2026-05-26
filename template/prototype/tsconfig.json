@@ -1,7 +1,6 @@
 {
   "extends": "@repo/typescript-config/react-app.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "types": ["@react-router/node", "vite/client"],
     "paths": {
       "#/*": ["./app/*"],

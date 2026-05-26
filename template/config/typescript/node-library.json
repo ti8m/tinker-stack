@@ -8,5 +8,6 @@
       "declarationMap": true,
       "sourceMap": true,
       "target": "ESNext",
+      "types": ["node"]
     }
   }
