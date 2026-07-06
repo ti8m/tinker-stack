@@ -161,4 +161,34 @@ describe('create-tinker-stack generator', () => {
     },
     5 * 60 * 1000
   );
+
+  test(
+    'runs non-interactively when the title is passed via --title',
+    async () => {
+      const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'tinker-stack-'));
+      const appFolder = 'titled-app';
+      const projectDir = path.join(tempRoot, appFolder);
+
+      try {
+        await runCommand('node', [CLI_ENTRY, '--title', 'My Cool App', appFolder], {
+          env: {
+            ...process.env,
+            SKIP_SETUP: '1',
+            SKIP_FORMAT: '1'
+          },
+          cwd: tempRoot,
+          stdin: 'ignore'
+        });
+
+        const packageJson = JSON.parse(await readFile(path.join(projectDir, 'package.json'), 'utf8'));
+        expect(packageJson.name).toBe('my-cool-app');
+
+        const readme = await readFile(path.join(projectDir, 'README.md'), 'utf8');
+        expect(readme).toContain('My Cool App');
+      } finally {
+        await rm(tempRoot, { recursive: true, force: true });
+      }
+    },
+    5 * 60 * 1000
+  );
 });

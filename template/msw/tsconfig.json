@@ -2,9 +2,6 @@
   "extends": "@repo/typescript-config/node-library.json",
   "include": ["./src/**/*.ts", "./full/*.ts", "./medium/*.ts"],
   "compilerOptions": {
-    "paths": {
-      "#/*": ["./src/*"]
-    },
     "outDir": "dist"
   },
   "exclude": ["node_modules", "dist", ".turbo"]

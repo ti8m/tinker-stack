@@ -29,6 +29,12 @@ To generate only specific example templates:
 npm create tinker-stack@latest -- --example react-router
 ```
 
+To run fully non-interactive, pass the app title with `--title` (the only value that is otherwise prompted for):
+
+```bash
+npm create tinker-stack@latest -- --title "My App" my-app
+```
+
 By default, all available examples are copied into `examples/<name>/` inside the generated project.
 They are self-contained and can be deleted without affecting the main workspace.
 
