@@ -1,6 +1,6 @@
 {
   "name": "create-tinker-stack",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "bin": {
     "create-tinker-stack": "create/index.js"
   },

@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.2.11](https://github.com/ti8m/tinker-stack/compare/v0.2.10...v0.2.11) (2026-07-06)
+
 ## [0.2.10](https://github.com/ti8m/tinker-stack/compare/v0.2.9...v0.2.10) (2026-05-26)
 
 
