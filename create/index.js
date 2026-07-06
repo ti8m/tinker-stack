@@ -16,6 +16,7 @@ function parseCliArgs(argv = process.argv.slice(2)) {
     cwd: undefined,
     debug: undefined,
     install: undefined,
+    title: undefined,
     examples: [],
     noExamples: false,
     withExample: false
@@ -51,6 +52,20 @@ function parseCliArgs(argv = process.argv.slice(2)) {
 
     if (arg === '--no-examples') {
       options.noExamples = true;
+      continue;
+    }
+
+    if (arg === '--title') {
+      const value = argv[i + 1];
+      if (value && !value.startsWith('-')) {
+        options.title = value;
+        i += 1;
+      }
+      continue;
+    }
+
+    if (arg.startsWith('--title=')) {
+      options.title = arg.slice('--title='.length);
       continue;
     }
 
@@ -153,6 +168,7 @@ function normalizeOptions(input = {}) {
   return {
     ...opts,
     targetDir: resolvedTargetDir,
+    title: opts.title ?? cli.title,
     debug: Boolean(opts.debug ?? cli.debug),
     install: opts.install ?? cli.install ?? true,
     cwd: resolvedCwd,

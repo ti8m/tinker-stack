@@ -8,6 +8,8 @@ Refer to the README.md for information about this repository.
 ## Build, Test & Development Commands
 Use Node 22+. Run `npm install` at the repo root before touching the CLI. Template work happens inside `template/`: `npm install` for dependencies, `npm run dev` to launch Turbo-powered development, `npm run build` for a production check, `npm run typecheck` for repository-wide TypeScript validation, `npm run test` to execute Vitest suites, and `npm run format` to apply Prettier across Markdown and TypeScript files.
 
+Refer to the @CONTRIBUTING.md file for running the generator locally.
+
 ## Coding Style & Naming Conventions
 Prettier enforces two-space indentation, single quotes, and trailing commas (`npm run format`). Keep imports auto-organized by the Prettier organize-imports plugin. Use `camelCase` for variables and functions, `PascalCase` for React components and types, and kebab-case for file names (e.g. `generate-data.mjs`). ESLint rules from `template/config/eslint/` run in every workspace, so resolve warnings or document exceptions in-code.
 

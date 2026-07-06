@@ -3,11 +3,11 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "rimraf dist && tsc && tsc-alias",
-    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "build": "rimraf dist && tsc",
+    "dev": "tsc -w",
     "clean": "rimraf dist && rimraf .turbo",
     "format": "prettier --write .",
-    "typecheck": "tsc && tsc-alias",
+    "typecheck": "tsc",
     "lint": "eslint src",
     "lint-staged": "lint-staged"
   },

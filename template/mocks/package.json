@@ -6,15 +6,15 @@
     "generate-data": "cli/generate-data.mjs"
   },
   "scripts": {
-    "build": "rimraf dist && tsc && tsc-alias",
-    "dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
+    "build": "rimraf dist && tsc",
+    "dev": "tsc -w",
     "clean": "rimraf dist && rimraf data-mocks && rimraf .turbo",
     "format": "prettier --write .",
     "generate:small": "node cli/generate-data.mjs -d small",
     "generate:medium": "node cli/generate-data.mjs -d medium",
     "generate:full": "node cli/generate-data.mjs -d full",
     "format:check": "prettier . --check",
-    "typecheck": "tsc && tsc-alias",
+    "typecheck": "tsc",
     "lint": "eslint src",
     "test": "vitest",
     "publish:manual": "npm publish --@planning-stack-template:registry=https://bin.ti8m.ch/artifactory/api/npm/planning-stack-template_npm-snapshot-local/",
