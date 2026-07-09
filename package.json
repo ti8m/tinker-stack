@@ -8,7 +8,17 @@
   "files": [
     "template",
     "example-templates",
-    "create"
+    "create",
+    "!**/node_modules/**",
+    "!**/dist/**",
+    "!**/build/**",
+    "!**/.turbo/**",
+    "!**/.react-router/**",
+    "!**/coverage/**",
+    "!**/data-mocks/**",
+    "!**/.cache/**",
+    "!**/*.tsbuildinfo",
+    "!**/package-lock.json"
   ],
   "engines": {
     "node": ">=22.3.0"
@@ -33,7 +43,8 @@
     "create-tinker-stack"
   ],
   "scripts": {
-    "prerelease": "find template example-templates -name package-lock.json -delete && find template example-templates -name tsconfig.tsbuildinfo -delete && find template example-templates -name .turbo -type d -prune -exec rm -rf {} +",
+    "clean:template": "find template example-templates -type d \\( -name node_modules -o -name dist -o -name build -o -name .turbo -o -name .react-router -o -name coverage -o -name data-mocks -o -name .cache \\) -prune -exec rm -rf {} + && find template example-templates -type f \\( -name package-lock.json -o -name '*.tsbuildinfo' \\) -delete",
+    "prerelease": "npm run clean:template",
     "release": "commit-and-tag-version",
     "test": "npm run test:e2e",
     "test:e2e": "vitest run --no-file-parallelism",

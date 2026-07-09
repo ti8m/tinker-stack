@@ -22,6 +22,10 @@ export async function main({ cwd, templateDir, exampleTemplatesDir, targetDir, e
     errorOnExist: true,
   });
 
+  // npm strips `.gitignore` from published packages, so the template ships it as
+  // `gitignore`. Restore the dotfile name in the generated project.
+  await restoreGitignore(targetDir);
+
   const EXAMPLE_ENV_PATH = path.join(targetDir, '.env.example');
   const ENV_PATH = path.join(targetDir, '.env');
   const PKG_PATH = path.join(targetDir, 'package.json');
@@ -100,6 +104,8 @@ export async function main({ cwd, templateDir, exampleTemplatesDir, targetDir, e
         errorOnExist: true,
       });
 
+      await restoreGitignore(exampleTargetDir);
+
       // Apply the same token replacements as for the main project, remapped to exampleTargetDir.
       const remap = (f) => path.join(exampleTargetDir, path.relative(targetDir, f));
       await replaceTokensInFiles(filesWithAppTitle.map(remap), appTitleRegex, APP_TITLE);
@@ -146,6 +152,18 @@ What's next?
 - Iterate
     `.trim(),
   );
+}
+
+async function restoreGitignore(dir) {
+  const shipped = path.join(dir, 'gitignore');
+  const dotfile = path.join(dir, '.gitignore');
+  try {
+    await fs.rename(shipped, dotfile);
+  } catch (error) {
+    if (error.code !== 'ENOENT') {
+      throw error;
+    }
+  }
 }
 
 async function mergeExampleFiles(sourceDir, targetDir) {

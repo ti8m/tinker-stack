@@ -39,6 +39,9 @@ data-mocks/
 vite.config.ts.timestamp-*
 .playwright-mcp/
 
+# Example templates (self-contained, generated into examples/<name>/)
+examples/
+
 # Misc
 .DS_Store
 *.pem
