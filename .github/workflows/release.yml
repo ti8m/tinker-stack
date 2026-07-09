@@ -4,6 +4,8 @@ on:
 
 permissions:
   contents: write
+  # Needed to dispatch the publish workflow at the end of the release job.
+  actions: write
 
 jobs:
   release:
@@ -74,3 +76,13 @@ jobs:
           else
             gh release create "$TAG" --title "$TAG" --notes-file RELEASE_NOTES.md
           fi
+
+      # Releases created with the default GITHUB_TOKEN do not trigger the
+      # `release: published` event in other workflows (GitHub's recursion
+      # guard), so the publish workflow must be dispatched explicitly.
+      # workflow_dispatch is exempt from that guard.
+      - name: Trigger npm publish workflow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{ steps.release.outputs.tag }}
+        run: gh workflow run publish.yml --ref main -f tag="$TAG"

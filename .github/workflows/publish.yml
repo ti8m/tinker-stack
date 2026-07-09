@@ -1,27 +1,40 @@
 name: Publish Package
 
 on:
+  # Direct trigger used by the release workflow (and available manually).
+  # The release workflow cannot rely on the `release` event below: releases
+  # created with the default GITHUB_TOKEN do not trigger other workflows.
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to publish (e.g. v0.2.12)'
+        required: true
+        type: string
+  # Still fires for releases created manually in the GitHub UI or with a PAT.
   release:
     types: [published]
 
 permissions:
   contents: read
+  # Required for npm trusted publishing (OIDC) and provenance.
   id-token: write
 
 jobs:
   publish:
-    if: startsWith(github.event.release.tag_name, 'v')
+    if: startsWith(inputs.tag || github.event.release.tag_name, 'v')
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository (fetch all tags)
-        uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
       - name: Resolve tag to publish
         id: tag
         run: |
-          echo "tag=${{ github.event.release.tag_name }}" >>"$GITHUB_OUTPUT"
+          echo "tag=${{ inputs.tag || github.event.release.tag_name }}" >>"$GITHUB_OUTPUT"
+
+      - name: Checkout repository at the release tag
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.tag.outputs.tag }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v6
