@@ -52,6 +52,17 @@ describe('create-tinker-stack generator', () => {
         );
         expect(examplePackageJson.scripts).toHaveProperty('build');
 
+        // npm strips `.gitignore` from published packages, so the template ships
+        // it as `gitignore` and the generator restores the dotfile name.
+        const gitignore = await readFile(path.join(projectDir, '.gitignore'), 'utf8');
+        expect(gitignore).toContain('node_modules');
+        expect(gitignore).toContain('examples/');
+        await expect(readFile(path.join(projectDir, 'gitignore'), 'utf8'))
+          .rejects.toMatchObject({ code: 'ENOENT' });
+        await expect(readFile(path.join(exampleDir, '.gitignore'), 'utf8')).resolves.toContain(
+          'node_modules'
+        );
+
         await runCommand('npm', ['install'], { cwd: projectDir });
         await runCommand('npm', ['run', 'typecheck'], { cwd: projectDir });
         await runCommand('npm', ['run', 'build:data'], { cwd: projectDir });
