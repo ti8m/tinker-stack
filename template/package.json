@@ -30,6 +30,14 @@
   },
   "resolutions": {
   },
+  "overrides": {
+    "zod": "^4.4.3",
+    "zod-validation-error": "^4.0.2",
+    "eslint-plugin-react-compiler": {
+      "zod": "^3.25.0",
+      "zod-validation-error": "3.5.3"
+    }
+  },
   "type": "module",
   "packageManager": "npm@11.18.0",
   "license": "MIT",
