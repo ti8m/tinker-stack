@@ -16,7 +16,7 @@
     "@repo/mocks": "*",
     "@tinyhttp/cookie": "^2.1.1",
     "memoize": "^11.0.0",
-    "msw": "^2.15.0",
+    "msw": "^3.0.3",
     "query-string": "^9.5.1"
   },
   "devDependencies": {
@@ -27,10 +27,10 @@
     "prettier": "^3.9.10"
   },
   "peerDependencies": {
-    "msw": "^2.4.9"
+    "msw": "^3.0.3"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=26.0.0"
   },
   "exports": {
     ".": {

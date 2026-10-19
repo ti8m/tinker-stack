@@ -47,7 +47,7 @@
     "@types/react-dom": "^19.3.0",
     "autoprefixer": "^10.6.1",
     "eslint-plugin-react-compiler": "^19.1.0-rc.2",
-    "msw": "2.15.0",
+    "msw": "^3.0.3",
     "prettier": "^3.9.10"
   },
   "msw": {

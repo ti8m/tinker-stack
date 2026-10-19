@@ -21,7 +21,7 @@
     "!**/package-lock.json"
   ],
   "engines": {
-    "node": ">=22.3.0"
+    "node": ">=26.0.0"
   },
   "repository": {
     "url": "https://github.com/ti8m/tinker-stack"

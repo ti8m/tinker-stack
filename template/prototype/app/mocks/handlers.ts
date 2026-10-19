@@ -1,4 +1,5 @@
-import { http, passthrough } from 'msw';
+import { http } from 'msw/http';
+import { passthrough } from 'msw/utils/passthrough';
 
 export const handlers = [
 	http.get('*', () => passthrough()),

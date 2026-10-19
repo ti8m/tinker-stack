@@ -1,6 +1,6 @@
 import type { Permission } from '@repo/api/commons/enums';
 import memoize from 'memoize';
-import { HttpResponse } from 'msw';
+import { HttpResponse } from 'msw/http';
 
 /**
  * Extracts the token from the request headers and parses it.
@@ -8,19 +8,19 @@ import { HttpResponse } from 'msw';
  * @param tokenString - encoded JSON String
  */
 function parseToken(tokenString: string) {
-	const token = JSON.parse(decodeURIComponent(tokenString)) as {
-		orgId: string;
-		sub: string;
-		permissions: Permission[];
-	};
+    const token = JSON.parse(decodeURIComponent(tokenString)) as {
+        orgId: string;
+        sub: string;
+        permissions: Permission[];
+    };
 
-	console.debug({ token });
+    console.debug({ token });
 
-	if (!token?.orgId || !token.sub) {
-		throw new HttpResponse(null, { status: 401, statusText: 'Invalid token' });
-	}
+    if (!token?.orgId || !token.sub) {
+        throw new HttpResponse(null, { status: 401, statusText: 'Invalid token' });
+    }
 
-	return token;
+    return token;
 }
 
 const memoizedParseToken = memoize(parseToken);
@@ -30,15 +30,13 @@ const memoizedParseToken = memoize(parseToken);
  * @param request
  * @returns
  */
-export const auth = (
-	cookies: Record<string, string>,
-): { orgId: string; sub: string; permissions: Permission[] } => {
-	if (!cookies?.authToken) {
-		console.warn('User not logged in', cookies);
-		throw new HttpResponse(null, { status: 401, statusText: 'No token' });
-	}
+export const auth = (cookies: Record<string, string>): { orgId: string; sub: string; permissions: Permission[] } => {
+    if (!cookies?.authToken) {
+        console.warn('User not logged in', cookies);
+        throw new HttpResponse(null, { status: 401, statusText: 'No token' });
+    }
 
-	return memoizedParseToken(cookies.authToken);
+    return memoizedParseToken(cookies.authToken);
 };
 
 /**
@@ -47,13 +45,13 @@ export const auth = (
  * @param cookies - The cookies to check the permission for.
  */
 export function needsPermission(permission: Permission, cookies: Record<string, string>) {
-	const { permissions } = auth(cookies);
-	if (!permissions.includes(permission)) {
-		throw new HttpResponse(null, {
-			status: 403,
-			statusText: `User not authorized, missing permission: ${permission}`,
-		});
-	}
+    const { permissions } = auth(cookies);
+    if (!permissions.includes(permission)) {
+        throw new HttpResponse(null, {
+            status: 403,
+            statusText: `User not authorized, missing permission: ${permission}`,
+        });
+    }
 }
 
 export type AuthFunction = typeof auth;
