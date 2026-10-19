@@ -16,21 +16,21 @@
     "@repo/mocks": "*",
     "@tinyhttp/cookie": "^2.1.1",
     "memoize": "^11.0.0",
-    "msw": "^2.14.6",
-    "query-string": "^9.4.1"
+    "msw": "^3.0.3",
+    "query-string": "^9.5.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/node": "^25.9.1",
+    "@types/node": "^26.6.5",
     "openapi-typescript": "^7.13.0",
-    "prettier": "^3.9.4"
+    "prettier": "^3.9.10"
   },
   "peerDependencies": {
-    "msw": "^2.4.9"
+    "msw": "^3.0.3"
   },
   "engines": {
-    "node": ">=22.0.0"
+    "node": ">=26.0.0"
   },
   "exports": {
     ".": {

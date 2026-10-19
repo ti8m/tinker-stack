@@ -11,27 +11,27 @@
     "lint": "turbo run lint -- --fix",
     "test": "turbo run test",
     "typecheck": "turbo run typecheck",
-    "upgrade": "npx npm-check-updates --interactive --format group -c 2",
+    "upgrade": "npx npm-check-updates --interactive --format group -c 2 -w",
     "clean": "rimraf .turbo && turbo run clean",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
     "@repo/api": "*",
     "eslint-plugin-import": "^2.32.0",
-    "prettier": "^3.9.4",
+    "prettier": "^3.9.10",
     "prettier-plugin-organize-imports": "^4.3.0",
-    "turbo": "^2.10.3",
+    "turbo": "^2.11.9",
     "typescript": "^6.0.3",
-    "vite": "^8.1.3",
-    "vitest": "^4.1.9"
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=26"
   },
   "resolutions": {
   },
   "type": "module",
-  "packageManager": "npm@11.18.0",
+  "packageManager": "npm@12.2.0",
   "license": "MIT",
   "workspaces": [
     "api",

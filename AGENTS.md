@@ -6,7 +6,7 @@ Refer to the README.md for information about this repository.
 `create/` contains the Node-based scaffold (`index.js` normalizes CLI options, `main.js` mutates the template). `template/` ships the default starter monorepo with workspaces such as `api/`, `mocks/`, `msw/`, `prototype/`, `ui/`, and `docs/`. `example-templates/` contains optional independent examples that can be copied into generated projects under `examples/<name>/`. Shared lint and TS configs live in `template/config/`.
 
 ## Build, Test & Development Commands
-Use Node 22+. Run `npm install` at the repo root before touching the CLI. Template work happens inside `template/`: `npm install` for dependencies, `npm run dev` to launch Turbo-powered development, `npm run build` for a production check, `npm run typecheck` for repository-wide TypeScript validation, `npm run test` to execute Vitest suites, and `npm run format` to apply Prettier across Markdown and TypeScript files.
+Use Node 26+. Run `npm install` at the repo root before touching the CLI. Template work happens inside `template/`: `npm install` for dependencies, `npm run dev` to launch Turbo-powered development, `npm run build` for a production check, `npm run typecheck` for repository-wide TypeScript validation, `npm run test` to execute Vitest suites, and `npm run format` to apply Prettier across Markdown and TypeScript files.
 
 Refer to the @CONTRIBUTING.md file for running the generator locally.
 

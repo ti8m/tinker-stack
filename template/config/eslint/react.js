@@ -1,6 +1,5 @@
 import baseConfig from '@repo/eslint-config/base';
 import reactPlugin from 'eslint-plugin-react';
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import tseslint from 'typescript-eslint';
 
 /**
@@ -30,13 +29,8 @@ export default tseslint.config(
 				{ name: 'NavLink', linkAttribute: 'to' },
 			],
 		},
-		plugins: {
-			'react-hooks': reactHooksPlugin,
-		},
 		rules: {
 			'react/react-in-jsx-scope': 'off',
-			...reactHooksPlugin.configs.recommended.rules,
-			'react-hooks/rules-of-hooks': 'error',
 		},
 	},
 );
