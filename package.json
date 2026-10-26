@@ -1,6 +1,7 @@
 {
   "name": "create-tinker-stack",
   "version": "0.2.14",
+  "license": "MIT",
   "bin": {
     "create-tinker-stack": "create/index.js"
   },
